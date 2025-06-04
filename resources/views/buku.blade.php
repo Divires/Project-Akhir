@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ config('app.name', 'READIFY') }}</title>
+    <title>READIFY</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/buku.css') }}">
+    <link rel="stylesheet" href="buku.css">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
 
         <!-- Sidebar -->
         <aside class="sidebar">
-            <h2 class="logo">{{ config('app.name', 'READIFY') }}</h2>
+            <h2 class="logo">READIFY</h2>
             <nav class="menu">
                 <a href="#" class="menu-item">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -65,11 +65,11 @@
         <div class="main-content">
             <!-- App bar -->
             <header class="app-bar">
-                <div class="left-text">Hai, Riana</div>
+                <div class="left-text">Hai, Atdriin</div>
                 <div class="right-icons">
-                    <img src="{{ asset('assets/icons/notification.svg') }}" alt="">
+                    <img src="../../public/assets/icons/notification.svg" alt="">
                     <div class="divider"></div>
-                    <img src="{{ asset('assets/img/profile.svg') }}" alt="">
+                    <img src="../../public/assets/img/profile.svg" alt="">
                 </div>
             </header>
 
@@ -77,7 +77,7 @@
             <section class="content">
                 <div class="top-bar">
                     <h3>Buku</h3>
-                    <button class="btn-tambah"><img src="{{ asset('assets/icons/plus.svg') }}" alt=""> Tambah
+                    <button class="btn-tambah"><img src="../../public/assets/icons/plus.svg" alt=""> Tambah
                         Baru</button>
                 </div>
 
@@ -99,19 +99,18 @@
                                 <td>Pengantar HTML</td>
                                 <td>12</td>
                                 <td>
-                                    <img src="{{ asset('assets/icons/eye.svg') }}" alt="">
-                                    <img src="{{ asset('assets/icons/edit.svg') }}" alt="">
-                                    <img src="{{ asset('assets/icons/delete.svg') }}" alt="">
-                                </td>
+                                    <img src="../../public/assets/icons/eye.svg" alt="">
+                                    <img src="../../public/assets/icons/edit.svg" alt="">
+                                    <img src="../../public/assets/icons/delete.svg" alt="">
                             </tr>
                             <tr>
                                 <td>BK002</td>
                                 <td>CSS Dasar</td>
                                 <td>7</td>
                                 <td>
-                                    <img src="{{ asset('assets/icons/eye.svg') }}" alt="">
-                                    <img src="{{ asset('assets/icons/edit.svg') }}" alt="">
-                                    <img src="{{ asset('assets/icons/delete.svg') }}" alt="">
+                                    <img src="../../public/assets/icons/eye.svg" alt="">
+                                    <img src="../../public/assets/icons/edit.svg" alt="">
+                                    <img src="../../public/assets/icons/delete.svg" alt="">
                                 </td>
                             </tr>
                         </tbody>

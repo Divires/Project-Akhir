@@ -48,4 +48,6 @@ Route::middleware(['auth', 'student'])->prefix('student')->name('student.')->gro
 });
 
 
-
+Route::get('/resources/views/buku', function () {
+    return view('buku');
+});
