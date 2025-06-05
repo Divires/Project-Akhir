@@ -26,10 +26,10 @@
         <input type="email" name="email" value="{{ old('email') }}"><br><br>
 
         <label>Password:</label><br>
-        <input type="password" name="password"><br><br>
+        <input type="password" name="password" required><br><br>
 
         <label>Confirm Password:</label><br>
-        <input type="password" name="password_confirmation"><br><br>
+        <input type="password" name="password_confirmation" required><br><br>
 
         <label>Role:</label><br>
         <select name="role" id="role-select" onchange="toggleRoleFields()">
