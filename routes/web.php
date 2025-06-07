@@ -56,3 +56,8 @@ Route::get('/resources/views/buku', function () {
 
 Route::resource('books', BookController::class);
 Route::resource('students', StudentController::class);
+Route::get('/borrow', [BorrowController::class, 'index'])->name('borrow.index');
+Route::get('/borrow/create', [BorrowController::class, 'create'])->name('borrow.create');
+Route::post('/borrow', [BorrowController::class, 'store'])->name('borrow.store');
+Route::get('/borrow/{id}/return', [BorrowController::class, 'returnForm'])->name('borrow.returnForm');
+Route::post('/borrow/{id}/return', [BorrowController::class, 'returnBook'])->name('borrow.returnBook');

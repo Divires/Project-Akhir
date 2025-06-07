@@ -12,8 +12,10 @@ class Borrow extends Model
         'student_id',
         'book_id',
         'borrow_date',
-        'return_date',
+        'expected_return_date',
+        'actual_return_date',
         'status',
+        'denda'
     ];
 
     public function student()

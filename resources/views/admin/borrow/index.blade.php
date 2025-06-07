@@ -4,36 +4,41 @@
 
 @section('content')
 <div class="container">
-     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2>Daftar Peminjaman Aktif</h2>
-        <a href="{{ route('borrow.create') }}" class="btn btn-primary">+ Tambah Peminjaman</a>
+    <h3>Daftar Peminjaman</h3>
+
+    <div class="mb-3">
+        <a href="{{ route('borrow.create') }}" class="btn btn-success">Pinjam Baru</a>
+        <a href="{{ route('borrow.index', ['status' => 'Dipinjam']) }}" class="btn btn-warning">Dipinjam</a>
+        <a href="{{ route('borrow.index', ['status' => 'Dikembalikan']) }}" class="btn btn-info">Dikembalikan</a>
     </div>
 
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>NIS</th>
-                <th>Nama</th>
+                <th>Siswa</th>
                 <th>Buku</th>
-                <th>Tgl Pinjam</th>
-                <th>Tgl Kembali</th>
+                <th>Tanggal Pinjam</th>
+                <th>Tanggal Kembali</th>
+                <th>Denda</th>
+                <th>Status</th>
                 <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($borrow as $loan)
+            @foreach($borrows as $borrow)
                 <tr>
-                    <td>{{ $loan->student->nis }}</td>
-                    <td>{{ $loan->student->name }}</td>
-                    <td>{{ $loan->book->judul }}</td>
-                    <td>{{ $loan->borrow_date }}</td>
-                    <td>{{ $loan->return_date }}</td>
+                    <td> ({{ $borrow->student->nis }}) {{ $borrow->student->name }}</td>
+                    <td> ({{ $borrow->book->code }}) {{ $borrow->book->title }}</td>
+                    <td>{{ $borrow->borrow_date }}</td>
+                    <td>{{ $borrow->expected_return_date ?? '-' }}</td>
+                    <td>Rp {{ number_format($borrow->fine) }}</td>
+                    <td>{{ $borrow->status }}</td>
                     <td>
-                        <form action="{{ route('borrow.return', $loan->id) }}" method="POST" onsubmit="return confirm('Yakin dikembalikan?')">
-                            @csrf
-                            @method('PUT')
-                            <button class="btn btn-success btn-sm">Kembalikan</button>
-                        </form>
+                        @if($borrow->status == 'Dipinjam')
+                            <a href="{{ route('borrow.returnForm', $borrow->id) }}" class="btn btn-sm btn-primary">Kembalikan</a>
+                        @else
+                            -
+                        @endif
                     </td>
                 </tr>
             @endforeach
