@@ -58,7 +58,7 @@ class StudentController extends Controller
             'nis' => $request->nis,
         ]);
 
-        return redirect()->route('admin.students.index')->with('success', 'Student berhasil ditambahkan.');
+        return redirect()->route('students.index')->with('success', 'Student berhasil ditambahkan.');
     }
 
 
@@ -109,7 +109,7 @@ class StudentController extends Controller
 
         $student->update($data);
 
-        return redirect()->route('admin.students.index')->with('success', 'Student updated successfully.');
+        return redirect()->route('students.index')->with('success', 'Student updated successfully.');
     }
 
     /**
@@ -120,6 +120,6 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
         $student->delete();
 
-        return redirect()->route('admin.students.index')->with('success', 'Student deleted successfully.');
+        return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
     }
 }

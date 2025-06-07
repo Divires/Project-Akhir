@@ -15,6 +15,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\BookController;
+use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Admin\BorrowController;
 
 // Landing Page
 Route::get('/', function () {
@@ -36,8 +39,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         return view('admin.dashboard');
     })->name('dashboard');
 
-    Route::resource('books', \App\Http\Controllers\Admin\BookController::class);
-    Route::resource('students', \App\Http\Controllers\Admin\StudentController::class);
+    
 });
 
 // Student Dashboard
@@ -51,3 +53,6 @@ Route::middleware(['auth', 'student'])->prefix('student')->name('student.')->gro
 Route::get('/resources/views/buku', function () {
     return view('buku');
 });
+
+Route::resource('books', BookController::class);
+Route::resource('students', StudentController::class);

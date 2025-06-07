@@ -16,6 +16,6 @@
         <strong>Stok:</strong> {{ $book->stock }}
     </div>
 
-    <a href="{{ route('admin.books.index') }}" class="btn btn-secondary">Kembali</a>
+    <a href="{{ route('books.index') }}" class="btn btn-secondary">Kembali</a>
 </div>
 @endsection

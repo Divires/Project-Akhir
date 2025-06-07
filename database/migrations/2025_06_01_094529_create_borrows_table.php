@@ -16,9 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger('student_id'); // relasi ke tabel students (berisi NIS juga)
             $table->unsignedBigInteger('book_id');    // relasi ke tabel books
             $table->date('borrow_date');              // tanggal pinjam
-            $table->date('return_date')->nullable();  // tanggal kembali
+            $table->date('expected_return_date');
+            $table->date('actual_return_date')->nullable();
             $table->enum('status', ['Dipinjam', 'Dikembalikan'])->default('Dipinjam');
+            $table->integer('denda')->nullable()->default(0);
             $table->timestamps();
+
 
             // Foreign Key
             $table->foreign('student_id')->references('id')->on('student')->onDelete('cascade');

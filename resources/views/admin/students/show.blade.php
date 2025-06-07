@@ -32,6 +32,6 @@
     </tr>
 </table>
 
-<a href="{{ route('admin.students.index') }}" class="btn btn-secondary">Kembali</a>
-<a href="{{ route('admin.students.edit', $student->id) }}" class="btn btn-warning">Edit</a>
+<a href="{{ route('students.index') }}" class="btn btn-secondary">Kembali</a>
+<a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning">Edit</a>
 @endsection

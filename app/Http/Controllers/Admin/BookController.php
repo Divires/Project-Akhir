@@ -66,7 +66,7 @@ class BookController extends Controller
         'stock' => $request->stock,
     ]);
 
-    return redirect()->route('admin.books.index')->with('success', 'Buku berhasil ditambahkan.');
+    return redirect()->route('books.index')->with('success', 'Buku berhasil ditambahkan.');
 }
 
 
@@ -107,7 +107,7 @@ class BookController extends Controller
             'stock' => $request->stock,
         ]);
 
-        return redirect()->route('admin.books.index')->with('success', 'Book updated successfully.');
+        return redirect()->route('books.index')->with('success', 'Book updated successfully.');
     }
 
     /**
@@ -118,6 +118,6 @@ class BookController extends Controller
         $book = Book::findOrFail($id);
         $book->delete();
 
-        return redirect()->route('admin.books.index')->with('success', 'Book deleted successfully.');
+        return redirect()->route('books.index')->with('success', 'Book deleted successfully.');
     }
 }

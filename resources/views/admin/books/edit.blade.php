@@ -4,7 +4,7 @@
 <div class="container">
     <h1>Edit Buku</h1>
 
-    <form action="{{ route('admin.books.update', $book->id) }}" method="POST">
+    <form action="{{ route('books.update', $book->id) }}" method="POST">
         @csrf @method('PUT')
 
         <div class="mb-3">
@@ -26,7 +26,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Update</button>
-        <a href="{{ route('admin.books.index') }}" class="btn btn-secondary">Batal</a>
+        <a href="{{ route('books.index') }}" class="btn btn-secondary">Batal</a>
     </form>
 </div>
 @endsection

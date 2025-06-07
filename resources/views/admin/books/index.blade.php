@@ -6,7 +6,7 @@
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h5 class="mb-0">📚 Daftar Buku</h5>
-        <a href="{{ route('admin.books.create') }}" class="btn btn-primary btn-sm">+ Tambah Buku</a>
+        <a href="{{ route('books.create') }}" class="btn btn-primary btn-sm">+ Tambah Buku</a>
     </div>
 
     <div class="card-body">
@@ -14,7 +14,7 @@
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        <form method="GET" action="{{ route('admin.books.index') }}" class="mb-3">
+        <form method="GET" action="{{ route('books.index') }}" class="mb-3">
             <div class="input-group">
                 <input
                     type="text"
@@ -44,9 +44,9 @@
                             <td>{{ $book->title }}</td>
                             <td>{{ $book->stock }}</td>
                             <td class="text-center">
-                                <a href="{{ route('admin.books.show', $book->id) }}" class="btn btn-info btn-sm">Detail</a>
-                                <a href="{{ route('admin.books.edit', $book->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ route('admin.books.destroy', $book->id) }}" method="POST" style="display:inline-block;">
+                                <a href="{{ route('books.show', $book->id) }}" class="btn btn-info btn-sm">Detail</a>
+                                <a href="{{ route('books.edit', $book->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline-block;">
                                     @csrf @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus buku ini?')">Hapus</button>
                                 </form>
