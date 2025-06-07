@@ -12,16 +12,29 @@ use Carbon\Carbon;
 class BorrowController extends Controller
 {
     public function index(Request $request)
-    {
-        $status = $request->get('status');
+{
+    $status = $request->get('status');
 
-        $borrows = Borrow::with(['student', 'book'])
-            ->when($status, fn($query) => $query->where('status', $status))
-            ->orderByDesc('borrow_date')
-            ->get();
+    $borrows = Borrow::with(['student', 'book'])
+        ->when($status, fn($query) => $query->where('status', $status))
+        ->orderByDesc('borrow_date')
+        ->get();
 
-        return view('admin.borrow.index', compact('borrows', 'status'));
+    foreach ($borrows as $borrow) {
+        $expected = Carbon::parse($borrow->expected_return_date);
+
+        // Kalau belum dikembalikan, pakai tanggal hari ini
+        $actual = $borrow->actual_return_date
+            ? Carbon::parse($borrow->actual_return_date)
+            : Carbon::today();
+
+        $lateDays = $actual->gt($expected) ? $actual->diffInDays($expected) : 0;
+
+        $borrow->denda = $lateDays * 1000;
     }
+
+    return view('admin.borrow.index', compact('borrows', 'status'));
+}
 
     public function create()
     {
@@ -69,26 +82,28 @@ class BorrowController extends Controller
 
     public function returnBook(Request $request, $id)
     {
-        $borrow = Borrow::findOrFail($id);
+        $borrow = Borrow::with('book')->findOrFail($id);
+
         $request->validate([
             'actual_return_date' => 'required|date',
         ]);
 
-        // Hitung denda
         $expected = Carbon::parse($borrow->expected_return_date);
         $actual = Carbon::parse($request->actual_return_date);
-        $fine = 0;
-            if ($actual->gt($expected)) {
-                $lateDays = $actual->diffInDays($expected);
-                $fine = $lateDays * 1000;
-            }
-        // Kembalikan stok
+
+        // Hitung denda hanya jika actual lebih besar dari expected
+        $fine = $actual->greaterThan($expected)
+            ? $actual->diffInDays($expected) * 1000
+            : 0;
+
+        // Kembalikan stok buku
         $borrow->book->increment('stock');
 
+        // Update data peminjaman
         $borrow->update([
             'actual_return_date' => $actual,
             'denda' => $fine,
-            'status' => 'Dikembalikan'
+            'status' => 'Dikembalikan',
         ]);
 
         return redirect()->route('borrow.index')->with('success', 'Buku berhasil dikembalikan.');
