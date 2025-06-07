@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Student;
 use Illuminate\Support\Facades\Hash;
 
@@ -44,18 +45,29 @@ class StudentController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:student,email',
-            'password' => 'required|string|min:6|confirmed',
+            'email' => 'required|email|unique:student,email|unique:users,email',
+            'password' => 'required|string|min:2|confirmed',
             'class' => 'required|string|max:50',
-            'nis' => 'required|string|unique:student,nis',
+            'nis' => 'required|string|unique:student,nis|unique:users,nis',
         ]);
 
-        Student::create([
+        // Simpan ke tabel student
+        $student = Student::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'class' => $request->class,
             'nis' => $request->nis,
+        ]);
+
+        // Simpan ke tabel users dengan role 'student'
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password), // atau langsung $request->password jika pakai mutator
+            'role' => 'student',
+            'nis' => $request->nis,
+            'class' => $request->class,
         ]);
 
         return redirect()->route('students.index')->with('success', 'Student berhasil ditambahkan.');
@@ -89,10 +101,10 @@ class StudentController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:student,email,' . $student->id,
-            'password' => 'nullable|string|min:6|confirmed',
+            'email' => 'required|email|unique:student,email,' . $student->id . '|unique:users,email,' . $student->email . ',email',
+            'password' => 'nullable|string|min:2|confirmed',
             'class' => 'required|string|max:50',
-            'nis' => 'required|unique:student,nis,' . $student->id,
+            'nis' => 'required|unique:student,nis,' . $student->id . '|unique:users,nis,' . $student->nis . ',nis',
         ]);
 
         $data = [
@@ -102,12 +114,18 @@ class StudentController extends Controller
             'nis' => $request->nis,
         ];
 
-        // Jika password diisi, hash dan update
         if ($request->filled('password')) {
             $data['password'] = Hash::make($request->password);
         }
 
+        // Update tabel student
         $student->update($data);
+
+        // Update tabel user
+        $user = User::where('email', $student->email)->first();
+        if ($user) {
+            $user->update($data);
+        }
 
         return redirect()->route('students.index')->with('success', 'Student updated successfully.');
     }
@@ -118,8 +136,14 @@ class StudentController extends Controller
     public function destroy(string $id)
     {
         $student = Student::findOrFail($id);
+
+        // Hapus data user berdasarkan email
+        User::where('email', $student->email)->delete();
+
+        // Hapus student
         $student->delete();
 
         return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
     }
+
 }
