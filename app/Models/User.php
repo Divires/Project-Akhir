@@ -17,9 +17,4 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    // Mutator supaya password otomatis di-hash saat diset
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
 }
