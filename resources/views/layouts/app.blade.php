@@ -9,15 +9,16 @@
     <title>@yield('title', 'Dashboard') - {{ config('app.name') }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
 </head>
+
 <body>
     <div class="flex min-h-screen" x-data="{ sidebarOpen: false, sidebarCollapsed: false }">
 
         @include('components.sidebar')
-        
+
         <div class="flex-1 flex flex-col">
 
             @include('components.appbar')
@@ -48,7 +49,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     @stack('scripts')
-    </body>
+</body>
 
 </html>
-

@@ -69,6 +69,32 @@ Route::get('/editbuku', function () {
     return view('editbuku');
 });
 
+Route::get('/siswa', function () {
+    return view('siswa');
+});
+
+Route::get('/createsiswa', function () {
+    return view('createsiswa');
+});
+
+Route::get('/editsiswa', function () {
+    return view('editsiswa');
+});
+
+Route::get('/readsiswa', function () {
+    return view('readsiswa');
+});
+
+Route::get('/login', function () {
+    return view('login');
+});
+Route::get('/register', function () {
+    return view('register');
+});
+
+
+
+
 Route::get('/resources/views/buku', function () {
     return view('buku');
 });

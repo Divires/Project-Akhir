@@ -34,7 +34,7 @@
             $menusTop = [
                 [
                     'name' => 'Dashboard',
-                    'url' => '',
+                    'url' => 'dashboard',
                     'icon' => '
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="stroke-current">
                         <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8.557 2.75H4.682A1.93 1.93 0 0 0 2.75 4.682v3.875a1.94 1.94 0 0 0 1.932 1.942h3.875a1.94 1.94 0 0 0 1.942-1.942V4.682A1.94 1.94 0 0 0 8.557 2.75m10.761 0h-3.875a1.94 1.94 0 0 0-1.942 1.932v3.875a1.943 1.943 0 0 0 1.942 1.942h3.875a1.94 1.94 0 0 0 1.932-1.942V4.682a1.93 1.93 0 0 0-1.932-1.932m0 10.75h-3.875a1.94 1.94 0 0 0-1.942 1.933v3.875a1.94 1.94 0 0 0 1.942 1.942h3.875a1.94 1.94 0 0 0 1.932-1.942v-3.875a1.93 1.93 0 0 0-1.932-1.932M8.557 13.5H4.682a1.943 1.943 0 0 0-1.932 1.943v3.875a1.93 1.93 0 0 0 1.932 1.932h3.875a1.94 1.94 0 0 0 1.942-1.932v-3.875a1.94 1.94 0 0 0-1.942-1.942" />
@@ -70,22 +70,10 @@
                         </g>
                     </svg>',
                 ],
-                [
-                    'name' => 'Denda',
-                    'url' => 'denda',
-                    'icon' => '
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <g fill="none" stroke="currentColor" stroke-width="1">
-                            <rect width="18" height="12" x="3" y="6" rx="2" />
-                            <path stroke-linecap="round" d="M5 9h3m8 6h3" />
-                            <circle cx="12" cy="12" r="2" />
-                        </g>
-                    </svg>',
-                ],
             ];
             $menuBottom = [
                 'name' => 'Keluar',
-                'url' => 'logout',
+                'url' => 'login',
                 'icon' => '
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1">
@@ -116,7 +104,7 @@
     </div>
 
     {{-- Menu Bawah --}}
-    <div class="flex flex-col mt-40 w-full px-6">
+    <div class="flex flex-col mt-50 w-full px-6">
         @php $isActive = ($current === $menuBottom['url']); @endphp
         <a href="{{ url($menuBottom['url']) }}"
             class="flex items-center w-[235px] h-[44px] rounded-md px-[25px] ml-[8px]
@@ -130,5 +118,11 @@
             <span class="text-[15px] font-medium">{{ $menuBottom['name'] }}</span>
         </a>
     </div>
-
+<style>
+    /* Optional: font Cinzel jika mau sama seperti logo sebelumnya */
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+    .font-cinzel {
+        font-family: 'Cinzel', serif;
+    }
+</style>
 </aside>

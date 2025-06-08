@@ -1,7 +1,7 @@
 // vite.config.js
-import { defineConfig } from "file:///D:/Coding%20Files/UAS/Project-Akhir-1/Project-Akhir/node_modules/vite/dist/node/index.js";
-import laravel from "file:///D:/Coding%20Files/UAS/Project-Akhir-1/Project-Akhir/node_modules/laravel-vite-plugin/dist/index.js";
-import tailwindcss from "file:///D:/Coding%20Files/UAS/Project-Akhir-1/Project-Akhir/node_modules/@tailwindcss/vite/dist/index.mjs";
+import { defineConfig } from "file:///D:/Coding%20Files/UAS/Project-Akhir/node_modules/vite/dist/node/index.js";
+import laravel from "file:///D:/Coding%20Files/UAS/Project-Akhir/node_modules/laravel-vite-plugin/dist/index.js";
+import tailwindcss from "file:///D:/Coding%20Files/UAS/Project-Akhir/node_modules/@tailwindcss/vite/dist/index.mjs";
 var vite_config_default = defineConfig({
   plugins: [
     tailwindcss(),
