@@ -49,6 +49,10 @@ Route::middleware(['auth', 'student'])->prefix('student')->name('student.')->gro
     })->name('dashboard');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
 Route::get('/buku', function () {
     return view('buku');
 });
