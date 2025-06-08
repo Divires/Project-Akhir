@@ -23,7 +23,6 @@ class BorrowController extends Controller
     foreach ($borrows as $borrow) {
         $expected = Carbon::parse($borrow->expected_return_date);
 
-        // Kalau belum dikembalikan, pakai tanggal hari ini
         $actual = $borrow->actual_return_date
             ? Carbon::parse($borrow->actual_return_date)
             : Carbon::today();
