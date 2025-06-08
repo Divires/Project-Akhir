@@ -49,6 +49,21 @@ Route::middleware(['auth', 'student'])->prefix('student')->name('student.')->gro
     })->name('dashboard');
 });
 
+Route::get('/buku', function () {
+    return view('buku');
+});
+
+Route::get('/createbuku', function () {
+    return view('createbuku');
+});
+
+Route::get('/readbuku', function () {
+    return view('readbuku');
+});
+
+Route::get('/editbuku', function () {
+    return view('editbuku');
+});
 
 Route::get('/resources/views/buku', function () {
     return view('buku');
