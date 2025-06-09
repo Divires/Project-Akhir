@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Book;
+
 
 class DashboardController extends Controller
 {
@@ -12,7 +14,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        //
+        // Ambil semua buku dari database
+        $books = Book::all();
+
+        // Kirim data ke view dashboard
+        return view('student.dashboard', compact('books'));
     }
 
     /**

@@ -46,9 +46,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
 // Student Dashboard
 Route::middleware(['auth', 'student'])->prefix('student')->name('student.')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('student.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [\App\Http\Controllers\Student\DashboardController::class, 'index'])
+    ->name('student.dashboard');
+
 });
 
 // Route::get('/dashboard', function () {

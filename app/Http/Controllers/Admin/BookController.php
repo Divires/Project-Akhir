@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -18,8 +19,10 @@ class BookController extends Controller
     // Cek apakah ada keyword pencarian
     if ($request->has('search')) {
         $search = $request->search;
-        $query->where('title', 'like', "%$search%")
-              ->orWhere('code', 'like', "%$search%");
+        $query ->where('title', 'like', "%$search%")
+                ->orWhere('code', 'like', "%$search%")
+                ->orWhere('description', 'like', "%$search%");
+
     }
 
     $books = $query->orderBy('created_at', 'asc')->get();
@@ -46,29 +49,35 @@ class BookController extends Controller
     /**
      * Store a newly created resource in storage.
      */
- public function store(Request $request)
-{
-    $request->validate([
-        'title' => 'required|string|max:255',
-        'stock' => 'required|integer|min:0',
-    ]);
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'stock' => 'required|integer|min:0',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
 
-    // Ambil kode terakhir
-    $lastBook = Book::orderBy('id', 'desc')->first();
-    $lastCode = $lastBook ? intval(substr($lastBook->code, 2)) : 0;
+        $lastBook = Book::orderBy('id', 'desc')->first();
+        $lastCode = $lastBook ? intval(substr($lastBook->code, 2)) : 0;
+        $newCode = 'BK' . str_pad($lastCode + 1, 3, '0', STR_PAD_LEFT);
 
-    // Buat kode baru dengan format BK001, BK002, dst.
-    $newCode = 'BK' . str_pad($lastCode + 1, 3, '0', STR_PAD_LEFT);
+        $data = [
+            'code' => $newCode,
+            'title' => $request->title,
+            'stock' => $request->stock,
+            'description' => $request->description,
+        ];
 
-    Book::create([
-        'code' => $newCode,
-        'title' => $request->title,
-        'stock' => $request->stock,
-    ]);
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('books', 'public');
+            $data['image'] = $imagePath;
+        }
 
-    return redirect()->route('books.index')->with('success', 'Buku berhasil ditambahkan.');
-}
+        Book::create($data);
 
+        return redirect()->route('books.index')->with('success', 'Buku berhasil ditambahkan.');
+    }
 
     /**
      * Display the specified resource.
@@ -99,15 +108,30 @@ class BookController extends Controller
             'code' => 'required|unique:books,code,' . $book->id,
             'title' => 'required|string|max:255',
             'stock' => 'required|integer|min:0',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $book->update([
+        $data = [
             'code' => $request->code,
             'title' => $request->title,
             'stock' => $request->stock,
-        ]);
+            'description' => $request->description,
+        ];
 
-        return redirect()->route('books.index')->with('success', 'Book updated successfully.');
+        if ($request->hasFile('image')) {
+            // Hapus gambar lama jika ada
+            if ($book->image && Storage::disk('public')->exists($book->image)) {
+                Storage::disk('public')->delete($book->image);
+            }
+
+            $imagePath = $request->file('image')->store('books', 'public');
+            $data['image'] = $imagePath;
+        }
+
+        $book->update($data);
+
+        return redirect()->route('books.index')->with('success', 'Buku berhasil diperbarui.');
     }
 
     /**
@@ -116,8 +140,14 @@ class BookController extends Controller
     public function destroy(string $id)
     {
         $book = Book::findOrFail($id);
+
+        // Hapus gambar jika ada
+        if ($book->image && Storage::disk('public')->exists($book->image)) {
+            Storage::disk('public')->delete($book->image);
+        }
+
         $book->delete();
 
-        return redirect()->route('books.index')->with('success', 'Book deleted successfully.');
+        return redirect()->route('books.index')->with('success', 'Buku berhasil dihapus.');
     }
 }
