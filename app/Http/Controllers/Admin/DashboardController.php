@@ -24,7 +24,7 @@ class DashboardController extends Controller
         $totalPeminjaman = Borrow::count();
 
         // Total peminjaman dengan status belum dikembalikan
-        $belumDikembalikan = Borrow::where('status', 'Dipinjam')->count();
+        $belumDikembalikan = Borrow::where('status', 'Dikembalikan')->count();
 
         $pinjamanPerBulan = Borrow::selectRaw('MONTH(created_at) as bulan, COUNT(*) as total')
             ->whereYear('created_at', Carbon::now()->year)

@@ -73,7 +73,7 @@
             ];
             $menuBottom = [
                 'name' => 'Keluar',
-                'url' => 'login',
+                'url' => 'logout',
                 'icon' => '
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1">
@@ -105,18 +105,20 @@
 
     {{-- Menu Bawah --}}
     <div class="flex flex-col mt-68 w-full px-6">
-        @php $isActive = ($current === $menuBottom['url']); @endphp
-        <a href="{{ url($menuBottom['url']) }}"
-            class="flex items-center w-[235px] h-[44px] rounded-md px-[25px] ml-[8px]
-                text-[#2c2c2c] hover:bg-red-100 hover:text-red-500
-                hover:stroke-[#2d4fb1] transition-colors duration-200
-                {{ $isActive ? 'bg-red-100 text-red-500' : '' }}">
-            <div class="w-6 h-6 mr-4 stroke-current"
-                style="min-width: 24px; min-height: 24px; display: flex; align-items: center; justify-content: center;">
-                {!! $menuBottom['icon'] !!}
-            </div>
-            <span class="text-[15px] font-medium">{{ $menuBottom['name'] }}</span>
-        </a>
+        <form action="{{ route('logout') }}" method="POST" class="w-full">
+    @csrf
+    <button type="submit"
+        class="flex items-center w-[235px] h-[44px] rounded-md px-[25px] ml-[8px]
+            text-[#2c2c2c] hover:bg-red-100 hover:text-red-500 hover:stroke-red-500
+            transition-colors duration-200">
+        <div class="w-6 h-6 mr-4 stroke-current fill-current"
+            style="min-width: 24px; min-height: 24px; display: flex; align-items: center; justify-content: center;">
+            {!! $menuBottom['icon'] !!}
+        </div>
+        <span class="text-[15px] font-medium">{{ $menuBottom['name'] }}</span>
+    </button>
+</form>
+
     </div>
 <style>
     /* Optional: font Cinzel jika mau sama seperti logo sebelumnya */
