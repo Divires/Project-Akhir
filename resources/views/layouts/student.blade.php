@@ -63,8 +63,8 @@
         </div>
 
         <nav class="flex-grow-1">
-            <a href="">🏠 Dashboard</a>
-            <a href="">📘 Peminjaman</a>
+            <a href="{{ route('student.dashboard')}}">🏠 Dashboard</a>
+            <a href="{{ route('student.borrow')}}">📘 Peminjaman</a>
             {{-- Tambahkan menu lain jika perlu --}}
         </nav>
 
