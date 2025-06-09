@@ -9,26 +9,16 @@ use App\Models\Book;
 
 class DashboardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
-        // Tangkap input search dari query string ?search=...
-        $search = $request->input('search');
+        $search = $request->search;
 
-        // Query builder untuk buku
-        $query = Book::query();
+        $books = Book::query()
+            ->when($search, fn($q) => $q->where('title', 'like', '%' . $search . '%'))
+            ->where('stock', '>', 0)
+            ->latest()
+            ->get();
 
-        // Jika ada keyword search, filter berdasarkan judul buku
-        if ($search) {
-            $query->where('title', 'like', '%' . $search . '%');
-        }
-
-        // Ambil data buku hasil query
-        $books = $query->get();
-
-        // Kirim data buku ke view dashboard
         return view('student.dashboard', compact('books'));
     }
 

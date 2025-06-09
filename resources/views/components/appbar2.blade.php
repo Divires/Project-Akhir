@@ -33,7 +33,7 @@
             <div class="h-6 w-px bg-[#2c2c2c]"></div>
 
             <!-- Profile Button -->
-            <a href="{{ route('admin.profile.index') }}" aria-label="Profile" 
+            <a href="#" aria-label="Profile" 
                class="rounded-full bg-gray-300 w-[30px] h-[30px] flex items-center justify-center overflow-hidden">
                @if(Auth::user()->photo)
                   <img src="{{ asset('storage/' . Auth::user()->photo) }}" alt="Foto Profil" class="w-full h-full object-cover rounded-full" />

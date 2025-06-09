@@ -21,19 +21,14 @@ use App\Http\Controllers\Admin\BorrowController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Student\ProfileController as StudentProfileController;
+use App\Http\Controllers\Student\DashboardController as StudentDashboardController;
+use App\Http\Controllers\Student\BorrowController as StudentBorrowController;
 
-// Landing Page
-Route::get('/', function () {
-    return view('login');
-})->name('login');
 
-// Auth
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
+Route::get('/', [AuthController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
-
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Admin Dashboard
@@ -53,15 +48,15 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
 // Student Dashboard
 Route::middleware(['auth', 'student'])->prefix('student')->name('student.')->group(function () {
-    Route::get('/dashboard', [\App\Http\Controllers\Student\DashboardController::class, 'index'])
+    Route::get('/dashboard', [StudentDashboardController::class, 'index'])
     ->name('dashboard');
-    Route::get('/borrow', [\App\Http\Controllers\Student\StudentController::class, 'borrow'])->name('borrow');
+    Route::get('/borrow', [StudentBorrowController::class, 'index'])->name('borrow');
 
 });
 
-Route::get('/dashboard', function () {
-        return view('dashboard');
-    });
+// Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     });
     
     // Route::get('/buku', function () {
         //     return view('buku');
@@ -87,71 +82,71 @@ Route::get('/dashboard', function () {
 //     return view('createsiswa');
 // });
 
-Route::get('/buku', function () {
-    return view('buku');
-});
+// Route::get('/buku', function () {
+//     return view('buku');
+// });
 
-Route::get('/createbuku', function () {
-    return view('createbuku');
-});
+// Route::get('/createbuku', function () {
+//     return view('createbuku');
+// });
 
-Route::get('/readbuku', function () {
-    return view('readbuku');
-});
+// Route::get('/readbuku', function () {
+//     return view('readbuku');
+// });
 
-Route::get('/editbuku', function () {
-    return view('editbuku');
-});
+// Route::get('/editbuku', function () {
+//     return view('editbuku');
+// });
 
-Route::get('/siswa', function () {
-    return view('siswa');
-});
+// Route::get('/siswa', function () {
+//     return view('siswa');
+// });
 
-Route::get('/createsiswa', function () {
-    return view('createsiswa');
-});
+// Route::get('/createsiswa', function () {
+//     return view('createsiswa');
+// });
 
-Route::get('/editsiswa', function () {
-    return view('editsiswa');
-});
+// Route::get('/editsiswa', function () {
+//     return view('editsiswa');
+// });
 
-Route::get('/readsiswa', function () {
-    return view('readsiswa');
-});
+// Route::get('/readsiswa', function () {
+//     return view('readsiswa');
+// });
 
-Route::get('/peminjaman', function () {
-    return view('peminjaman');
-});
+// Route::get('/peminjaman', function () {
+//     return view('peminjaman');
+// });
 
-Route::get('/createpeminjaman', function () {
-    return view('createpeminjaman');
-});
+// Route::get('/createpeminjaman', function () {
+//     return view('createpeminjaman');
+// });
 
-Route::get('/peminjaman/pengembalian', function () {
-    return view('pengembalian');
-});
+// Route::get('/peminjaman/pengembalian', function () {
+//     return view('pengembalian');
+// });
 
-Route::get('/login', function () {
-    return view('login');
-});
+// Route::get('/login', function () {
+//     return view('login');
+// });
 
-Route::get('/register', function () {
-    return view('register');
-});
+// Route::get('/register', function () {
+//     return view('register');
+// });
 
-Route::get('/profil', function () {
-    return view('profil');
-});
+// Route::get('/profil', function () {
+//     return view('profil');
+// });
 
-Route::get('/editprofil', function () {
-    return view('editprofil');
-});
+// Route::get('/editprofil', function () {
+//     return view('editprofil');
+// });
 
 
 
-Route::get('/resources/views/buku', function () {
-    return view('buku');
-});
+// Route::get('/resources/views/buku', function () {
+//     return view('buku');
+// });
 
 
 Route::resource('books', BookController::class);

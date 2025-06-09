@@ -42,7 +42,7 @@ public function register(Request $request)
         'remember_token' => Str::random(60),
     ]);
 
-    // Jika role student dan kamu memang butuh data di tabel `students`
+    // Jika role student dan kamu memang butuh data di tabel students
     if ($request->role === 'student') {
         Student::create([
             'name' => $request->name,
@@ -64,30 +64,25 @@ public function register(Request $request)
 
 public function login(Request $request)
 {
-    $request->validate([
-        'email' => 'required|email',
-        'password' => 'required',
-    ]);
-
     $credentials = $request->only('email', 'password');
 
     if (Auth::attempt($credentials)) {
-        $request->session()->regenerate();
+        $user = Auth::user();
 
-        if (Auth::user()->role === 'admin') {
-            return redirect()->intended(route('admin.dashboard.index'));
-        } elseif (Auth::user()->role === 'student') {
-            return redirect()->intended(route('student.dashboard'));
-        } else {
-            Auth::logout();
-            return back()->withErrors(['role' => 'Role tidak dikenali.']);
+        // Paksa agar tidak redirect ke 'intended'
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.dashboard.index');
+        } elseif ($user->role === 'student') {
+            return redirect()->route('student.dashboard');
         }
+
+        Auth::logout(); // fallback kalau role tidak dikenali
+        return redirect()->route('login')->withErrors(['email' => 'Role tidak dikenali.']);
     }
 
-    return back()->withErrors([
-        'email' => 'Email atau password salah.',
-    ]);
+    return redirect()->route('login')->withErrors(['email' => 'Email atau password salah']);
 }
+
 
     public function logout(Request $request)
     {
