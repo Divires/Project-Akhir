@@ -26,13 +26,13 @@
 
         <div class="bg-white rounded-lg shadow-lg w-full max-w-sm text-center p-6">
 
-            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto mb-4 h-16 w-16 text-yellow-500" fill="none"
+            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto mb-4 h-16 w-16 text-red-500" fill="none"
                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round"
                     d="M12 9v2m0 4h.01M12 19c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z" />
             </svg>
 
-            <h2 class="text-lg font-semibold text-gray-800 mb-6">Konfirmasi Hapus Pengguna</h2>
+            <h2 class="text-lg font-semibold text-gray-800 mb-6">Konfirmasi Hapus Data</h2>
 
             <div class="flex justify-center space-x-4">
                 <button @click="openModal = false"

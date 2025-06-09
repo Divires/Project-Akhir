@@ -14,8 +14,10 @@
 
             <!-- Page Title -->
             <div class="flex flex-col">
+
                 <h1 class="text-base sm:text-lg md:text-2xl font-semibold text-gray-800">Dashboard</h1>
                 <p class="text-xs sm:text-sm text-gray-500">Hai, {{ Auth::user()->name }}</p>
+
             </div>
         </div>
 
