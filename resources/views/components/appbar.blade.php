@@ -12,7 +12,7 @@
             <!-- Page Title -->
             <div class="flex flex-col">
                 <h1 class="text-base sm:text-lg md:text-xl font-semibold text-gray-800">Dashboard</h1>
-                <p class="text-xs sm:text-sm text-gray-500">Hai Riana</p>
+                <p class="text-xs sm:text-sm text-gray-500">Hai Admin</p>
             </div>
         </div>
 
