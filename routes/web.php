@@ -19,6 +19,8 @@ use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\BorrowController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Student\ProfileController as StudentProfileController;
 
 // Landing Page
 Route::get('/', function () {
@@ -39,6 +41,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::resource('books', BookController::class);
     Route::resource('students', StudentController::class);
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
 
 // Student Dashboard
@@ -107,3 +112,7 @@ Route::get('/borrow/create', [BorrowController::class, 'create'])->name('borrow.
 Route::post('/borrow', [BorrowController::class, 'store'])->name('borrow.store');
 Route::get('/borrow/{id}/return', [BorrowController::class, 'returnForm'])->name('borrow.returnForm');
 Route::post('/borrow/{id}/return', [BorrowController::class, 'returnBook'])->name('borrow.returnBook');
+
+Route::get('/profile', [StudentProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/edit', [StudentProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [StudentProfileController::class, 'update'])->name('profile.update');

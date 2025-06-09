@@ -71,7 +71,7 @@
                                             </svg>
                                         </a>
 
-                                        <x-delete :action="route('admin.books.destroy', $student->id)" />
+                                        <x-delete :action="route('admin.students.destroy', $student->id)" />
                                     </td>
                                 </tr>
                             @empty
