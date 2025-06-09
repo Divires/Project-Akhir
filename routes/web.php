@@ -44,6 +44,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/borrow', [BorrowController::class, 'index'])->name('borrow.index');
+    Route::get('/borrow/create', [BorrowController::class, 'create'])->name('borrow.create');
+    Route::post('/borrow', [BorrowController::class, 'store'])->name('borrow.store');
+    Route::get('/borrow/{id}/return', [BorrowController::class, 'returnForm'])->name('borrow.returnForm');
+    Route::post('/borrow/{id}/return', [BorrowController::class, 'returnBook'])->name('borrow.returnBook');
 });
 
 // Student Dashboard
@@ -144,12 +149,7 @@ Route::get('/resources/views/buku', function () {
 Route::resource('books', BookController::class);
 Route::resource('students', StudentController::class);
 
-Route::get('/borrow', [BorrowController::class, 'index'])->name('borrow.index');
-Route::get('/borrow/create', [BorrowController::class, 'create'])->name('borrow.create');
-Route::post('/borrow', [BorrowController::class, 'store'])->name('borrow.store');
-Route::get('/borrow/{id}/return', [BorrowController::class, 'returnForm'])->name('borrow.returnForm');
-Route::post('/borrow/{id}/return', [BorrowController::class, 'returnBook'])->name('borrow.returnBook');
 
 Route::get('/profile', [StudentProfileController::class, 'index'])->name('profile.index');
-    Route::get('/profile/edit', [StudentProfileController::class, 'edit'])->name('profile.edit');
-    Route::put('/profile', [StudentProfileController::class, 'update'])->name('profile.update');
+Route::get('/profile/edit', [StudentProfileController::class, 'edit'])->name('profile.edit');
+Route::put('/profile', [StudentProfileController::class, 'update'])->name('profile.update');

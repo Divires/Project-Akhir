@@ -71,7 +71,7 @@ class BorrowController extends Controller
         'status' => 'Dipinjam',
     ]);
 
-    return redirect()->route('borrow.index')->with('success', 'Peminjaman berhasil.');
+    return redirect()->route('admin.borrow.index')->with('success', 'Peminjaman berhasil.');
 }
     public function returnForm($id)
     {
@@ -105,6 +105,6 @@ class BorrowController extends Controller
             'status' => 'Dikembalikan',
         ]);
 
-        return redirect()->route('borrow.index')->with('success', 'Buku berhasil dikembalikan.');
+        return redirect()->route('admin.borrow.index')->with('success', 'Buku berhasil dikembalikan.');
     }
 }
