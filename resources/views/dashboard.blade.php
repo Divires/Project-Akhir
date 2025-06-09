@@ -9,11 +9,11 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
 
             <!-- Total Member -->
-            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-[#2c2c2c]">
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-purple-500">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-xs sm:text-sm text-[#2c2c2c]/70">Total Member</p>
-                        <p class="text-xl sm:text-2xl font-bold">1,234</p>
+                        <p class="text-xl sm:text-2xl text-[#2c2c2c] font-bold">1,234</p>
                     </div>
                     <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-lg flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="purple"
@@ -26,7 +26,7 @@
             </div>
 
             <!-- Buku Tersedia -->
-            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-[#2c2c2c] text-pink-500">
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-pink-500">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-xs sm:text-sm text-[#2c2c2c]/70">Buku Tersedia</p>
@@ -53,7 +53,7 @@
                     <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="dodgerblue"
                             fill="none" viewBox="0 0 24 24">
-                            <g stroke-width="1">
+                            <g stroke-width="1.5">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M11.692 7.889h4.52M11.692 12h4.52m-4.52 4.111h4.52M8.066 8.506a.617.617 0 1 0 0-1.234a.617.617 0 0 0 0 1.234m0 4.111a.617.617 0 1 0 0-1.234a.617.617 0 0 0 0 1.234m0 4.111a.617.617 0 1 0 0-1.234a.617.617 0 0 0 0 1.234" />
                                 <rect width="18.5" height="18.5" x="2.75" y="2.75" rx="6" />
@@ -64,13 +64,13 @@
             </div>
 
             <!-- Pengembalian -->
-            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-[#2c2c2c]">
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-teal-600">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-xs sm:text-sm text-[#2c2c2c]/70">Pengembalian</p>
-                        <p class="text-xl sm:text-2xl font-bold">156</p>
+                        <p class="text-xl sm:text-2xl text-[#2c2c2c] font-bold">156</p>
                     </div>
-                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-sky-100 rounded-lg flex items-center justify-center">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-teal-100 rounded-lg flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="skyblue"
                             viewBox="0 0 1024 1024">
                             <path fill="currentColor"

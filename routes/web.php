@@ -49,6 +49,10 @@ Route::middleware(['auth', 'student'])->prefix('student')->name('student.')->gro
 
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
 Route::get('/buku', function () {
     return view('buku');
 });
@@ -65,9 +69,36 @@ Route::get('/editbuku', function () {
     return view('editbuku');
 });
 
+Route::get('/siswa', function () {
+    return view('siswa');
+});
+
+Route::get('/createsiswa', function () {
+    return view('createsiswa');
+});
+
+Route::get('/editsiswa', function () {
+    return view('editsiswa');
+});
+
+Route::get('/readsiswa', function () {
+    return view('readsiswa');
+});
+
+Route::get('/login', function () {
+    return view('login');
+});
+Route::get('/register', function () {
+    return view('register');
+});
+
+
+
+
 Route::get('/resources/views/buku', function () {
     return view('buku');
 });
+
 
 Route::resource('books', BookController::class);
 Route::resource('students', StudentController::class);
