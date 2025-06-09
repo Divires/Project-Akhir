@@ -21,8 +21,8 @@ use App\Http\Controllers\Admin\BorrowController;
 
 // Landing Page
 Route::get('/', function () {
-    return view('landing');
-})->name('landing');
+    return view('login');
+})->name('login');
 
 // Auth
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
@@ -83,6 +83,18 @@ Route::get('/editsiswa', function () {
 
 Route::get('/readsiswa', function () {
     return view('readsiswa');
+});
+
+Route::get('/peminjaman', function () {
+    return view('peminjaman');
+});
+
+Route::get('/createpeminjaman', function () {
+    return view('createpeminjaman');
+});
+
+Route::get('/peminjaman/pengembalian', function () {
+    return view('pengembalian');
 });
 
 Route::get('/login', function () {

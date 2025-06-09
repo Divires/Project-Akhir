@@ -104,7 +104,7 @@
     </div>
 
     {{-- Menu Bawah --}}
-    <div class="flex flex-col mt-50 w-full px-6">
+    <div class="flex flex-col mt-68 w-full px-6">
         @php $isActive = ($current === $menuBottom['url']); @endphp
         <a href="{{ url($menuBottom['url']) }}"
             class="flex items-center w-[235px] h-[44px] rounded-md px-[25px] ml-[8px]
