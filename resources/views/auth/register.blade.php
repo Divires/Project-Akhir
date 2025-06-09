@@ -118,32 +118,6 @@
       <input type="email" name="email" id="email" placeholder="Masukkan email"
         class="h-10 border border-[#a1a0a0] rounded px-3 focus:ring-2 focus:ring-[#2d4fb1]" value="{{ old('email') }}" required />
 
-      <!-- Role -->
-      <label for="role" class="text-sm font-medium text-[#2c2c2c]">Daftar sebagai</label>
-      <select name="role" id="role" class="h-10 border border-[#a1a0a0] rounded px-3 focus:ring-2 focus:ring-[#2d4fb1]" required>
-        <option value="" disabled selected>Pilih role</option>
-        <option value="student" {{ old('role') === 'student' ? 'selected' : '' }}>Siswa</option>
-        <option value="admin" {{ old('role') === 'admin' ? 'selected' : '' }}>Petugas</option>
-      </select>
-
-      <!-- NIS dan Kelas (untuk siswa) -->
-      <div id="studentFields" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4">
-        <label for="nis" class="text-sm font-medium text-[#2c2c2c]">NIS</label>
-        <input type="text" name="nis" id="nis" placeholder="Masukkan NIS"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ old('nis') }}" />
-
-        <label for="class" class="text-sm font-medium text-[#2c2c2c]">Kelas</label>
-        <input type="text" name="class" id="class" placeholder="Masukkan kelas"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ old('class') }}" />
-      </div>
-
-      <!-- Jabatan (untuk admin) -->
-      <div id="adminFields" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4">
-        <label for="position" class="text-sm font-medium text-[#2c2c2c]">Jabatan</label>
-        <input type="text" name="position" id="position" placeholder="Masukkan jabatan"
-          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ old('position') }}" />
-      </div>
-
       <!-- Password -->
       <label for="password" class="text-sm font-medium text-[#2c2c2c]">Password</label>
       <div class="relative">
@@ -160,6 +134,41 @@
       <label for="password_confirmation" class="text-sm font-medium text-[#2c2c2c]">Konfirmasi Password</label>
       <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Konfirmasi password"
         class="h-10 border border-[#a1a0a0] rounded px-3 focus:ring-2 focus:ring-[#2d4fb1]" required />
+
+         <!-- Role -->
+      <label for="role" class="text-sm font-medium text-[#2c2c2c]">Daftar sebagai</label>
+      <select name="role" id="role" class="h-10 border border-[#a1a0a0] rounded px-3 focus:ring-2 focus:ring-[#2d4fb1]" required>
+        <option value="" disabled selected>Pilih role</option>
+        <option value="student" {{ old('role') === 'student' ? 'selected' : '' }}>Siswa</option>
+        <option value="admin" {{ old('role') === 'admin' ? 'selected' : '' }}>Petugas</option>
+      </select>
+
+      <!-- NIS dan Kelas (untuk siswa) -->
+      <div id="studentFields" class="hidden flex flex-col gap-5">
+        <div>
+          <label for="nis" class="text-sm font-medium text-[#2c2c2c]">NIS</label>
+          <input type="text" name="nis" id="nis" placeholder="Masukkan NIS"
+            class="h-10 border border-[#a1a0a0] rounded px-3 focus:ring-2 focus:ring-[#2d4fb1] w-full"
+            value="{{ old('nis') }}" />
+        </div>
+
+        <div>
+          <label for="class" class="text-sm font-medium text-[#2c2c2c]">Kelas</label>
+          <input type="text" name="class" id="class" placeholder="Masukkan kelas"
+            class="h-10 border border-[#a1a0a0] rounded px-3 focus:ring-2 focus:ring-[#2d4fb1] w-full"
+            value="{{ old('class') }}" />
+        </div>
+      </div>
+
+      <!-- Jabatan (untuk admin) -->
+      <div id="adminFields" class="hidden flex flex-col gap-5">
+        <div>
+          <label for="position" class="text-sm font-medium text-[#2c2c2c]">Jabatan</label>
+          <input type="text" name="position" id="position" placeholder="Masukkan jabatan"
+            class="h-10 border border-[#a1a0a0] rounded px-3 focus:ring-2 focus:ring-[#2d4fb1] w-full"
+            value="{{ old('position') }}" />
+        </div>
+      </div>  
 
       <!-- Tombol Register -->
       <button type="submit" class="bg-[#2d4fb1] text-white rounded py-2 hover:bg-[#24438a] transition">Daftar</button>

@@ -24,8 +24,8 @@ use App\Http\Controllers\Student\ProfileController as StudentProfileController;
 
 // Landing Page
 Route::get('/', function () {
-    return view('landing');
-})->name('landing');
+    return view('login');
+})->name('login');
 
 // Auth
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
@@ -49,8 +49,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 // Student Dashboard
 Route::middleware(['auth', 'student'])->prefix('student')->name('student.')->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\Student\DashboardController::class, 'index'])
-    ->name('student.dashboard');
-    
+    ->name('dashboard');
+    Route::get('/borrow', [\App\Http\Controllers\Student\StudentController::class, 'borrow'])->name('borrow');
+
 });
 
 // Route::get('/dashboard', function () {
@@ -81,32 +82,68 @@ Route::middleware(['auth', 'student'])->prefix('student')->name('student.')->gro
 //     return view('createsiswa');
 // });
 
-// Route::get('/editsiswa', function () {
-    //     return view('editsiswa');
-    // });
-    
-    // Route::get('/readsiswa', function () {
-        //     return view('readsiswa');
-        // });
-        
-        // Route::get('/login', function () {
-            //     return view('login');
-            // });
-            // Route::get('/register', function () {
-                //     return view('register');
-                // });
-                
-                
-                
-                
-                // Route::get('/resources/views/buku', function () {
-                    //     return view('buku');
-                    // });
-                    
-                    
-                    
-                    
-Route::get('/borrow', [BorrowController::class, 'index'])->name('borrow.index');
+Route::get('/buku', function () {
+    return view('buku');
+});
+
+Route::get('/createbuku', function () {
+    return view('createbuku');
+});
+
+Route::get('/readbuku', function () {
+    return view('readbuku');
+});
+
+Route::get('/editbuku', function () {
+    return view('editbuku');
+});
+
+Route::get('/siswa', function () {
+    return view('siswa');
+});
+
+Route::get('/createsiswa', function () {
+    return view('createsiswa');
+});
+
+Route::get('/editsiswa', function () {
+    return view('editsiswa');
+});
+
+Route::get('/readsiswa', function () {
+    return view('readsiswa');
+});
+
+Route::get('/peminjaman', function () {
+    return view('peminjaman');
+});
+
+Route::get('/createpeminjaman', function () {
+    return view('createpeminjaman');
+});
+
+Route::get('/peminjaman/pengembalian', function () {
+    return view('pengembalian');
+});
+
+Route::get('/login', function () {
+    return view('login');
+});
+Route::get('/register', function () {
+    return view('register');
+});
+
+
+
+
+Route::get('/resources/views/buku', function () {
+    return view('buku');
+});
+
+
+Route::resource('books', BookController::class);
+Route::resource('students', StudentController::class);
+
 Route::get('/borrow', [BorrowController::class, 'index'])->name('borrow.index');
 Route::get('/borrow/create', [BorrowController::class, 'create'])->name('borrow.create');
 Route::post('/borrow', [BorrowController::class, 'store'])->name('borrow.store');

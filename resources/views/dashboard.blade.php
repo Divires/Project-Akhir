@@ -85,48 +85,48 @@
 
         <div class="bg-white mt-6 rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6">
             <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-4">Peminjaman Bulanan</h3>
-            <canvas id="barChart" height="150"></canvas>
+            <canvas id="barChart" height="90"></canvas>
         </div>
 
     </div>
 
     @push('scripts')
-<script>
-    const ctx = document.getElementById('barChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],
-            datasets: [{
-                label: 'Peminjaman',
-                data: [120, 150, 180, 90, 200, 170, 190, 160, 220, 180, 200, 170],
-                backgroundColor: 'rgba(59, 130, 246, 0.7)', // biru
-                borderRadius: 6,
-                barThickness: 30,
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                x: {
-                grid: {
-                    display: false
-                }
+        <script>
+            const ctx = document.getElementById('barChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],
+                    datasets: [{
+                        label: 'Peminjaman',
+                        data: [120, 150, 180, 90, 200, 170, 190, 160, 220, 180, 200, 170],
+                        backgroundColor: 'rgba(59, 130, 246, 0.7)', // biru
+                        borderRadius: 6,
+                        barThickness: 30,
+                    }]
                 },
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        stepSize: 50
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 50
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
                     }
                 }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
-</script>
-@endpush
+            });
+        </script>
+    @endpush
 @endsection
