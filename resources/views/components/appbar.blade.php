@@ -2,19 +2,16 @@
     <div class="flex items-center justify-between px-4 md:px-6 py-3">
 
         <div class="flex items-center gap-3">
-            <button 
-                @click="sidebarOpen = !sidebarOpen"
-                class="text-gray-700 focus:outline-none md:hidden"
-            >
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-                    viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 6h16M4 12h16M4 18h16"/>
+            <button @click="sidebarOpen = !sidebarOpen" class="text-gray-700 focus:outline-none md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
 
             <!-- Page Title -->
             <div class="flex flex-col">
-                <h1 class="text-base sm:text-lg md:text-2xl font-semibold text-gray-800">Dashboard</h1>
+                <h1 class="text-base sm:text-lg md:text-xl font-semibold text-gray-800">Dashboard</h1>
                 <p class="text-xs sm:text-sm text-gray-500">Hai Riana</p>
             </div>
         </div>
@@ -22,18 +19,27 @@
         <!-- Right Side -->
         <div class="flex items-center gap-3">
             <!-- Notification Button -->
-            <button aria-label="Notifikasi" class="text-[#2c2c2c] w-[30px] h-[30px] flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 36 36" fill="currentColor">
-                    <path d="M32.51 27.83A14.4 14.4 0 0 1 30 24.9a12.6 12.6 0 0 1-1.35-4.81v-4.94A10.81 10.81 0 0 0 19.21 4.4V3.11a1.33 1.33 0 1 0-2.67 0v1.31a10.81 10.81 0 0 0-9.33 10.73v4.94a12.6 12.6 0 0 1-1.35 4.81a14.4 14.4 0 0 1-2.47 2.93a1 1 0 0 0-.34.75v1.36a1 1 0 0 0 1 1h27.8a1 1 0 0 0 1-1v-1.36a1 1 0 0 0-.34-.75Z" />
-                    <path d="M18 34.28A2.67 2.67 0 0 0 20.58 32h-5.26A2.67 2.67 0 0 0 18 34.28" />
+            <button aria-label="Notifikasi" class="text-[#2c2c2c] w-[35px] h-[35px] flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
+                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="1">
+                        <path
+                            d="M11.962 17.986h6.81a1.555 1.555 0 0 0 1.512-2.175c-.36-1.088-1.795-2.393-1.795-3.677c0-2.85 0-3.6-1.404-5.276a5 5 0 0 0-1.653-1.283l-.783-.38a1.1 1.1 0 0 1-.511-.73a2.023 2.023 0 0 0-2.176-1.707a2.023 2.023 0 0 0-2.12 1.707a1.09 1.09 0 0 1-.567.73l-.783.38A5 5 0 0 0 6.84 6.858c-1.403 1.676-1.403 2.426-1.403 5.276c0 1.284-1.37 2.458-1.73 3.611c-.217.697-.337 2.241 1.48 2.241z" />
+                        <path d="M15.225 17.986a3.2 3.2 0 0 1-3.263 3.263A3.195 3.195 0 0 1 8.7 17.986" />
+                    </g>
                 </svg>
             </button>
 
             <!-- Divider -->
-            <div class="h-6 w-px bg-[#2c2c2c]"></div>
+            <div class="h-6 w-px bg-gray-300"></div>
 
             <!-- Profile Button -->
-            <button aria-label="Profile" class="rounded-full bg-gray-300 w-[30px] h-[30px]"></button>
+            <!-- Profile Button (Frontend Only) -->
+            <a href="/profil" aria-label="Profile">
+                <img src="https://i.pinimg.com/736x/f9/75/46/f9754682a71ebaa3beedf21f733a073c.jpg" alt="Profil"
+                    class="rounded-full w-[30px] h-[30px] object-cover border border-gray-400" />
+            </a>
+
         </div>
     </div>
 </header>

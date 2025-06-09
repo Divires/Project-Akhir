@@ -54,9 +54,9 @@ Route::middleware(['auth', 'student'])->prefix('student')->name('student.')->gro
 
 });
 
-// Route::get('/dashboard', function () {
-    //     return view('dashboard');
-    // });
+Route::get('/dashboard', function () {
+        return view('dashboard');
+    });
     
     // Route::get('/buku', function () {
         //     return view('buku');
@@ -129,10 +129,18 @@ Route::get('/peminjaman/pengembalian', function () {
 Route::get('/login', function () {
     return view('login');
 });
+
 Route::get('/register', function () {
     return view('register');
 });
 
+Route::get('/profil', function () {
+    return view('profil');
+});
+
+Route::get('/editprofil', function () {
+    return view('editprofil');
+});
 
 
 
