@@ -13,7 +13,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-xs sm:text-sm text-[#2c2c2c]/70">Total Member</p>
-                        <p class="text-xl sm:text-2xl font-bold">1,234</p>
+                        <p class="text-xl sm:text-2xl font-bold">{{ $totalSiswa }}</p>
                     </div>
                     <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-lg flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="purple"
@@ -30,7 +30,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-xs sm:text-sm text-[#2c2c2c]/70">Buku Tersedia</p>
-                        <p class="text-xl sm:text-2xl  text-[#2c2c2c] font-bold">215</p>
+                        <p class="text-xl sm:text-2xl  text-[#2c2c2c] font-bold">{{ $totalBuku }}</p>
                     </div>
                     <div class="w-10 h-10 sm:w-12 sm:h-12 bg-pink-100 rounded-lg flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="deeppink"
@@ -48,7 +48,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-xs sm:text-sm text-[#2c2c2c]/70">Peminjaman</p>
-                        <p class="text-xl sm:text-2xl font-bold">892</p>
+                        <p class="text-xl sm:text-2xl font-bold">{{ $totalPeminjaman }}</p>
                     </div>
                     <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="dodgerblue"
@@ -68,7 +68,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-xs sm:text-sm text-[#2c2c2c]/70">Pengembalian</p>
-                        <p class="text-xl sm:text-2xl font-bold">156</p>
+                        <p class="text-xl sm:text-2xl font-bold">{{ $belumDikembalikan }}</p>
                     </div>
                     <div class="w-10 h-10 sm:w-12 sm:h-12 bg-sky-100 rounded-lg flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="skyblue"
@@ -91,42 +91,35 @@
     </div>
 
     @push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const ctx = document.getElementById('barChart').getContext('2d');
+    const chartData = @json($chartData);
+
     new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],
             datasets: [{
                 label: 'Peminjaman',
-                data: [120, 150, 180, 90, 200, 170, 190, 160, 220, 180, 200, 170],
-                backgroundColor: 'rgba(59, 130, 246, 0.7)', // biru
-                borderRadius: 6,
-                barThickness: 30,
+                data: chartData,
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderRadius: 4
             }]
         },
         options: {
             responsive: true,
             scales: {
-                x: {
-                grid: {
-                    display: false
-                }
-                },
                 y: {
                     beginAtZero: true,
                     ticks: {
-                        stepSize: 50
+                        precision: 0
                     }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
                 }
             }
         }
     });
 </script>
 @endpush
+
 @endsection

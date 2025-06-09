@@ -75,9 +75,9 @@ public function login(Request $request)
         $request->session()->regenerate();
 
         if (Auth::user()->role === 'admin') {
-            return redirect()->intended('/admin/dashboard');
+            return redirect()->intended(route('admin.dashboard.index'));
         } elseif (Auth::user()->role === 'student') {
-            return redirect()->intended('/student/dashboard');
+            return redirect()->intended(route('student.dashboard'));
         } else {
             Auth::logout();
             return back()->withErrors(['role' => 'Role tidak dikenali.']);
@@ -88,6 +88,7 @@ public function login(Request $request)
         'email' => 'Email atau password salah.',
     ]);
 }
+
     public function logout(Request $request)
     {
         Auth::logout();

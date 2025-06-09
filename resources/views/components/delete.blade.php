@@ -40,11 +40,13 @@
                     Batal
                 </button>
 
-                <form method="POST">
-                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm">
-                        Hapus
-                    </button>
-                </form>
+            <form method="POST" action="{{ $action }}">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm">
+                    Hapus
+                </button>
+            </form>
             </div>
         </div>
     </div>

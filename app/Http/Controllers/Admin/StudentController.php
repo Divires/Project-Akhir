@@ -70,7 +70,7 @@ class StudentController extends Controller
             'class' => $request->class,
         ]);
 
-        return redirect()->route('students.index')->with('success', 'Student berhasil ditambahkan.');
+        return redirect()->route('admin.students.index')->with('success', 'Student berhasil ditambahkan.');
     }
 
 
@@ -127,7 +127,7 @@ class StudentController extends Controller
             $user->update($data);
         }
 
-        return redirect()->route('students.index')->with('success', 'Student updated successfully.');
+        return redirect()->route('admin.students.index')->with('success', 'Student updated successfully.');
     }
 
     /**
@@ -143,7 +143,7 @@ class StudentController extends Controller
         // Hapus student
         $student->delete();
 
-        return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
+        return redirect()->route('admin.students.index')->with('success', 'Student deleted successfully.');
     }
 
 }

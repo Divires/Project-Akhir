@@ -4,62 +4,47 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Book;
+use App\Models\Borrow;
+use Carbon\Carbon;
+use DB;
 
 class DashboardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
-    }
+        // Total siswa (anggap guard 'siswa' atau role siswa)
+        $totalSiswa = User::where('role', 'student')->count();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        // Total buku berdasarkan jumlah stok
+        $totalBuku = Book::sum('stock'); // atau Book::all()->sum('stock');
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        // Total semua peminjaman
+        $totalPeminjaman = Borrow::count();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        // Total peminjaman dengan status belum dikembalikan
+        $belumDikembalikan = Borrow::where('status', 'Dipinjam')->count();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        // Data peminjaman per bulan (1 tahun berjalan)
+        $pinjamanPerBulan = Borrow::selectRaw('MONTH(created_at) as bulan, COUNT(*) as total')
+            ->whereYear('created_at', Carbon::now()->year)
+            ->groupByRaw('MONTH(created_at)')
+            ->pluck('total', 'bulan')
+            ->toArray();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        // Menyusun data peminjaman per bulan dari Jan ke Des
+        $dataChart = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $dataChart[] = $pinjamanPerBulan[$i] ?? 0;
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return view('admin.dashboard', [
+            'totalSiswa' => $totalSiswa,
+            'totalBuku' => $totalBuku,
+            'totalPeminjaman' => $totalPeminjaman,
+            'belumDikembalikan' => $belumDikembalikan,
+            'chartData' => json_encode($dataChart),
+        ]);
     }
 }

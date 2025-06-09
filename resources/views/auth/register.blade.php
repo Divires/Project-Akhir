@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Register</title>
@@ -67,5 +67,139 @@
         // Initialize on page load
         window.onload = toggleRoleFields;
     </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>READIFY - Register</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+    .font-cinzel {
+      font-family: 'Cinzel', serif;
+    }
+    input, select {
+      font-size: 0.875rem;
+      padding-top: 0.35rem;
+      padding-bottom: 0.35rem;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen p-4">
+  <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-md flex flex-col items-center">
+    <h1 class="font-cinzel text-[#2d4fb1] text-3xl font-bold mb-6 select-none">READIFY</h1>
+
+    <form method="POST" action="{{ route('register') }}" class="w-full flex flex-col gap-5">
+      @csrf
+      <h2 class="text-[#2c2c2c] text-xl font-semibold mb-4 text-center">Register</h2>
+
+      <!-- Alert jika error -->
+      @if ($errors->any())
+        <div class="bg-red-100 text-red-700 p-2 rounded">
+          <ul class="text-sm list-disc pl-5">
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+      @endif
+
+      <!-- Nama -->
+      <label for="name" class="text-sm font-medium text-[#2c2c2c]">Nama</label>
+      <input type="text" name="name" id="name" placeholder="Masukkan nama"
+        class="h-10 border border-[#a1a0a0] rounded px-3 focus:ring-2 focus:ring-[#2d4fb1]" value="{{ old('name') }}" required />
+
+      <!-- Email -->
+      <label for="email" class="text-sm font-medium text-[#2c2c2c]">Email</label>
+      <input type="email" name="email" id="email" placeholder="Masukkan email"
+        class="h-10 border border-[#a1a0a0] rounded px-3 focus:ring-2 focus:ring-[#2d4fb1]" value="{{ old('email') }}" required />
+
+      <!-- Role -->
+      <label for="role" class="text-sm font-medium text-[#2c2c2c]">Daftar sebagai</label>
+      <select name="role" id="role" class="h-10 border border-[#a1a0a0] rounded px-3 focus:ring-2 focus:ring-[#2d4fb1]" required>
+        <option value="" disabled selected>Pilih role</option>
+        <option value="student" {{ old('role') === 'student' ? 'selected' : '' }}>Siswa</option>
+        <option value="admin" {{ old('role') === 'admin' ? 'selected' : '' }}>Petugas</option>
+      </select>
+
+      <!-- NIS dan Kelas (untuk siswa) -->
+      <div id="studentFields" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4">
+        <label for="nis" class="text-sm font-medium text-[#2c2c2c]">NIS</label>
+        <input type="text" name="nis" id="nis" placeholder="Masukkan NIS"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ old('nis') }}" />
+
+        <label for="class" class="text-sm font-medium text-[#2c2c2c]">Kelas</label>
+        <input type="text" name="class" id="class" placeholder="Masukkan kelas"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ old('class') }}" />
+      </div>
+
+      <!-- Jabatan (untuk admin) -->
+      <div id="adminFields" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4">
+        <label for="position" class="text-sm font-medium text-[#2c2c2c]">Jabatan</label>
+        <input type="text" name="position" id="position" placeholder="Masukkan jabatan"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ old('position') }}" />
+      </div>
+
+      <!-- Password -->
+      <label for="password" class="text-sm font-medium text-[#2c2c2c]">Password</label>
+      <div class="relative">
+        <input type="password" name="password" id="password" placeholder="Masukkan password"
+          class="h-10 w-full border border-[#a1a0a0] rounded px-3 pr-10 focus:ring-2 focus:ring-[#2d4fb1]" required />
+        <button type="button" id="togglePassword" class="absolute right-2 top-1/2 -translate-y-1/2 text-[#2d4fb1]">
+          <svg id="eyeClosed" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor">
+            <path d="M2.54 4.71L3.25 4L20 20.75l-.71.71l-3.34-3.35c-1.37.57-2.87.89-4.45.89c-4.56 0-8.5-2.65-10.36-6.5c.97-2 2.49-3.67 4.36-4.82zM11.5 18c1.29 0 2.53-.23 3.67-.66l-1.12-1.13c-.73.5-1.6.79-2.55.79C9 17 7 15 7 12.5c0-.95.29-1.82.79-2.55L6.24 8.41a10.64 10.64 0 0 0-3.98 4.09C4.04 15.78 7.5 18 11.5 18m9.24-5.5C18.96 9.22 15.5 7 11.5 7c-1.15 0-2.27.19-3.31.53l-.78-.78C8.68 6.26 10.06 6 11.5 6c4.56 0 8.5 2.65 10.36 6.5a11.47 11.47 0 0 1-4.07 4.63l-.72-.73c1.53-.96 2.8-2.3 3.67-3.9" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Konfirmasi Password -->
+      <label for="password_confirmation" class="text-sm font-medium text-[#2c2c2c]">Konfirmasi Password</label>
+      <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Konfirmasi password"
+        class="h-10 border border-[#a1a0a0] rounded px-3 focus:ring-2 focus:ring-[#2d4fb1]" required />
+
+      <!-- Tombol Register -->
+      <button type="submit" class="bg-[#2d4fb1] text-white rounded py-2 hover:bg-[#24438a] transition">Daftar</button>
+
+      <!-- Link ke login -->
+      <p class="text-sm text-center">Sudah punya akun? <a href="{{ route('login.form') }}" class="text-[#2d4fb1] hover:underline">Login di sini</a></p>
+    </form>
+  </div>
+
+  <!-- Script Toggle -->
+  <script>
+    const roleSelect = document.getElementById('role');
+    const studentFields = document.getElementById('studentFields');
+    const adminFields = document.getElementById('adminFields');
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+
+    roleSelect.addEventListener('change', () => {
+      if (roleSelect.value === 'student') {
+        studentFields.classList.remove('hidden');
+        adminFields.classList.add('hidden');
+      } else if (roleSelect.value === 'admin') {
+        adminFields.classList.remove('hidden');
+        studentFields.classList.add('hidden');
+      } else {
+        studentFields.classList.add('hidden');
+        adminFields.classList.add('hidden');
+      }
+    });
+
+    togglePassword.addEventListener('click', () => {
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+    });
+
+    // Set state on load if validation fails
+    window.addEventListener('DOMContentLoaded', () => {
+      if (roleSelect.value === 'student') studentFields.classList.remove('hidden');
+      if (roleSelect.value === 'admin') adminFields.classList.remove('hidden');
+    });
+  </script>
 </body>
 </html>
