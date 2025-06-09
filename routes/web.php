@@ -69,6 +69,7 @@ Route::get('/resources/views/buku', function () {
     return view('buku');
 });
 
+
 Route::resource('books', BookController::class);
 Route::resource('students', StudentController::class);
 Route::get('/borrow', [BorrowController::class, 'index'])->name('borrow.index');
