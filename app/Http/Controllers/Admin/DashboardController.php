@@ -26,7 +26,6 @@ class DashboardController extends Controller
         // Total peminjaman dengan status belum dikembalikan
         $belumDikembalikan = Borrow::where('status', 'Dipinjam')->count();
 
-        // Data peminjaman per bulan (1 tahun berjalan)
         $pinjamanPerBulan = Borrow::selectRaw('MONTH(created_at) as bulan, COUNT(*) as total')
             ->whereYear('created_at', Carbon::now()->year)
             ->groupByRaw('MONTH(created_at)')
@@ -34,17 +33,18 @@ class DashboardController extends Controller
             ->toArray();
 
         // Menyusun data peminjaman per bulan dari Jan ke Des
-        $dataChart = [];
-        for ($i = 1; $i <= 12; $i++) {
-            $dataChart[] = $pinjamanPerBulan[$i] ?? 0;
-        }
+       $chartData = [];
+    for ($i = 1; $i <= 12; $i++) {
+        $total = Borrow::whereMonth('borrow_date', $i)->count();
+        $chartData[] = $total;
+    }
 
         return view('admin.dashboard', [
             'totalSiswa' => $totalSiswa,
             'totalBuku' => $totalBuku,
             'totalPeminjaman' => $totalPeminjaman,
             'belumDikembalikan' => $belumDikembalikan,
-            'chartData' => json_encode($dataChart),
+            'chartData' => $chartData,
         ]);
     }
 }

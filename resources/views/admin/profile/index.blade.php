@@ -1,23 +1,61 @@
 @extends('layouts.app')
 
-@section('title', 'Profil Admin')
-@section('subtitle', 'Admin > Profil')
+@section('title', 'READIFY')
+@section('subtitle', 'Profil')
 
 @section('content')
-<div class="p-4 bg-white rounded shadow w-full max-w-md mx-auto">
-    <h1 class="text-xl font-semibold mb-4">Profil Anda</h1>
-    <div class="mb-2"><strong>Nama:</strong> {{ $user->name }}</div>
-    <div class="mb-2"><strong>Email:</strong> {{ $user->email }}</div>
-    <div class="mb-2"><strong>Jabatan:</strong> {{ $user->position ?? '-' }}</div>
-    @if($user->photo)
-    <div class="mb-2">
-        <img src="{{ asset('storage/' . $user->photo) }}" alt="Foto Profil" class="w-24 h-24 rounded-full object-cover border">
+<div>
+    <!-- Breadcrumb -->
+    <div class="text-xl mb-4 flex gap-2 items-center font-medium">
+        <span class="text-[#2c2c2c]">Profil</span>
     </div>
-    @endif
 
-    <a href="{{ route('admin.profile.edit') }}"
-       class="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
-       Edit Profil
-    </a>
+    <!-- Profil Container -->
+    <div class="overflow-x-auto border border-[#e2e2e2] rounded-lg p-6 bg-white text-sm shadow w-full">
+        <div class="grid md:grid-cols-3 gap-6">
+
+            <!-- Foto Profil di kiri -->
+            <div class="flex flex-col items-center gap-3 col-span-1">
+                <img src="{{ $user->photo ? asset('storage/' . $user->photo) : asset('/default-profile.png') }}"
+                     alt="Foto Profil"
+                     class="w-24 h-24 object-cover rounded-full border border-gray-300">
+            </div>
+
+            <!-- Informasi Profil -->
+            <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Nama -->
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-[#2c2c2c] mb-1">Nama</label>
+                    <p class="w-full h-10 px-3 flex items-center border border-[#e2e2e2] rounded bg-[#f9f9f9]">
+                        {{ $user->name }}
+                    </p>
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label class="block text-sm font-medium text-[#2c2c2c] mb-1">Email</label>
+                    <p class="w-full h-10 px-3 flex items-center border border-[#e2e2e2] rounded bg-[#f9f9f9]">
+                        {{ $user->email }}
+                    </p>
+                </div>
+
+                <!-- Jabatan -->
+                <div>
+                    <label class="block text-sm font-medium text-[#2c2c2c] mb-1">Jabatan</label>
+                    <p class="w-full h-10 px-3 flex items-center border border-[#e2e2e2] rounded bg-[#f9f9f9]">
+                        {{ $user->position ?? '-' }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tombol -->
+            <div class="md:col-span-3 pt-4 flex">
+                <a href="{{ route('admin.profile.edit') }}"
+                   class="bg-[#2d4fb1] text-white px-6 py-2 rounded hover:bg-[#24438a] transition">
+                    Edit Profil
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
