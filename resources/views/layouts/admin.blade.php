@@ -63,8 +63,8 @@
         </div>
 
         <nav class="flex-grow-1">
-            <a href="{{ route('books.index') }}">📚 Manajemen Buku</a>
-            <a href="{{ route('students.index') }}">👨‍🎓 Manajemen Siswa</a>
+            <a href="{{ route('admin.books.index') }}">📚 Manajemen Buku</a>
+            <a href="{{ route('admin.students.index') }}">👨‍🎓 Manajemen Siswa</a>
             <a href="{{ route('borrow.index')}}">Peminjaman</a>
             {{-- Tambahkan menu lainnya di sini --}}
         </nav>

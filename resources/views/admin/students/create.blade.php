@@ -1,54 +1,102 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
-@section('title', 'Tambah Siswa Baru')
+@section('title', 'READIFY')
+@section('subtitle', 'Siswa > Tambah Siswa')
 
 @section('content')
-<h1>Tambah Siswa Baru</h1>
+    <div>
+        <!-- Breadcrumb -->
+        <div class="text-xl mb-4 flex gap-2 items-center font-medium">
+            <a href="/admin/students" class="text-[#2c2c2c] hover:text-[#2d4fb1]">Siswa</a>
+            <span class="text-[#7c7c7c]">></span>
+            <span class="text-[#2d4fb1]">Tambah Siswa</span>
+        </div>
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
-<form action="{{ route('students.store') }}" method="POST">
+        <!-- Form -->
+        <div class="overflow-x-auto border border-[#e2e2e2] rounded-lg p-6 bg-white text-sm shadow w-full">
+            <form action="{{ route('admin.students.store') }}" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6">
     @csrf
 
-    <div class="mb-3">
-        <label for="nis" class="form-label">NIS</label>
-        <input type="text" id="nis" name="nis" value="{{ old('nis') }}" class="form-control" required>
+    <!-- Nama Siswa -->
+    <div class="md:col-span-2">
+        <label for="name" class="block text-sm font-medium text-[#2c2c2c] mb-1">Nama Siswa</label>
+        <input type="text" id="name" name="name"
+            value="{{ old('name') }}"
+            class="w-full h-10 border border-[#e2e2e2] rounded px-3 focus:outline-none focus:ring-2 focus:ring-[#2d4fb1] @error('name') border-red-500 @enderror"
+            placeholder="Masukkan nama siswa">
+        @error('name')
+            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+        @enderror
     </div>
 
-    <div class="mb-3">
-        <label for="name" class="form-label">Nama Lengkap</label>
-        <input type="text" id="name" name="name" value="{{ old('name') }}" class="form-control" required>
+    <!-- NIS -->
+    <div>
+        <label for="nis" class="block text-sm font-medium text-[#2c2c2c] mb-1">NIS</label>
+        <input type="text" id="nis" name="nis"
+            value="{{ old('nis') }}"
+            class="w-full h-10 border border-[#e2e2e2] rounded px-3 focus:outline-none focus:ring-2 focus:ring-[#2d4fb1] @error('nis') border-red-500 @enderror"
+            placeholder="Masukkan NIS siswa">
+        @error('nis')
+            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+        @enderror
     </div>
 
-    <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" id="email" name="email" value="{{ old('email') }}" class="form-control" required>
+    <!-- Email -->
+    <div>
+        <label for="email" class="block text-sm font-medium text-[#2c2c2c] mb-1">Email</label>
+        <input type="email" id="email" name="email"
+            value="{{ old('email') }}"
+            class="w-full h-10 border border-[#e2e2e2] rounded px-3 focus:outline-none focus:ring-2 focus:ring-[#2d4fb1] @error('email') border-red-500 @enderror"
+            placeholder="Masukkan email siswa">
+        @error('email')
+            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+        @enderror
     </div>
 
-    <div class="mb-3">
-        <label for="class" class="form-label">Kelas</label>
-        <input type="text" id="class" name="class" value="{{ old('class') }}" class="form-control" required>
+    <!-- Password -->
+    <div>
+        <label for="password" class="block text-sm font-medium text-[#2c2c2c] mb-1">Password</label>
+        <input type="password" id="password" name="password"
+            class="w-full h-10 border border-[#e2e2e2] rounded px-3 focus:outline-none focus:ring-2 focus:ring-[#2d4fb1] @error('password') border-red-500 @enderror"
+            placeholder="Masukkan password siswa">
+        @error('password')
+            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+        @enderror
     </div>
 
-    <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" id="password" name="password" class="form-control" required>
+    <!-- Password Confirmation -->
+<div>
+    <label for="password_confirmation" class="block text-sm font-medium text-[#2c2c2c] mb-1">Konfirmasi Password</label>
+    <input type="password" id="password_confirmation" name="password_confirmation"
+        class="w-full h-10 border border-[#e2e2e2] rounded px-3 focus:outline-none focus:ring-2 focus:ring-[#2d4fb1]"
+        placeholder="Konfirmasi password siswa">
+</div>
+
+
+    <!-- Kelas -->
+    <div>
+        <label for="class" class="block text-sm font-medium text-[#2c2c2c] mb-1">Kelas</label>
+        <input type="text" id="class" name="class"
+            value="{{ old('class') }}"
+            class="w-full h-10 border border-[#e2e2e2] rounded px-3 focus:outline-none focus:ring-2 focus:ring-[#2d4fb1] @error('class') border-red-500 @enderror"
+            placeholder="Masukkan kelas siswa">
+        @error('class')
+            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+        @enderror
     </div>
 
-    <div class="mb-3">
-        <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
-        <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
+    <!-- Tombol -->
+    <div class="md:col-span-2 pt-4 flex gap-4">
+        <a href="{{ route('admin.students.index') }}"
+            class="px-6 py-2 rounded border border-[#e2e2e2] text-[#2c2c2c] hover:bg-[#f1f1f1] transition">
+            Cancel
+        </a>
+        <button type="submit"
+            class="bg-[#2d4fb1] text-white px-6 py-2 rounded hover:bg-[#24438a] transition">
+            Simpan Siswa
+        </button>
     </div>
-
-    <button type="submit" class="btn btn-success">Simpan</button>
-    <a href="{{ route('students.index') }}" class="btn btn-secondary">Batal</a>
 </form>
+        </div>
+    </div>
 @endsection

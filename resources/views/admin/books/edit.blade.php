@@ -1,68 +1,92 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
-@section('title', 'Edit Buku')
+@section('title', 'READIFY')
+@section('subtitle', 'Buku > Edit Buku')
 
 @section('content')
-<div class="container">
-    <h1 class="mb-4">Edit Buku</h1>
-
-    @if ($errors->any())
-        <div class="alert alert-danger mb-3">
-            <ul class="mb-0">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <form action="{{ route('books.update', $book->id) }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
-
-        {{-- Kode Buku (readonly) --}}
-        <div class="mb-3">
-            <label for="code" class="form-label">Kode Buku</label>
-            <input type="text" name="code" id="code" class="form-control" value="{{ old('code', $book->code) }}" readonly>
-            @error('code') <div class="text-danger small">{{ $message }}</div> @enderror
+    <div>
+        <!-- Breadcrumb -->
+        <div class="text-xl mb-4 flex gap-2 items-center font-medium">
+            <a href="{{ route('books.index') }}" class="text-[#2c2c2c] hover:text-[#2d4fb1]">Buku</a>
+            <span class="text-[#7c7c7c]">></span>
+            <span class="text-[#2d4fb1]">Edit Buku</span>
         </div>
 
-        {{-- Judul Buku --}}
-        <div class="mb-3">
-            <label for="title" class="form-label">Judul Buku</label>
-            <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $book->title) }}">
-            @error('title') <div class="text-danger small">{{ $message }}</div> @enderror
-        </div>
+        <!-- Form -->
+        <div class="overflow-x-auto border border-[#e2e2e2] rounded-lg p-6 bg-white text-sm shadow w-full">
+            <form action="{{ route('books.update', $book->id) }}" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                @csrf
+                @method('PUT')
 
-        {{-- Stok --}}
-        <div class="mb-3">
-            <label for="stock" class="form-label">Stok</label>
-            <input type="number" name="stock" id="stock" class="form-control" value="{{ old('stock', $book->stock) }}">
-            @error('stock') <div class="text-danger small">{{ $message }}</div> @enderror
-        </div>
-
-        {{-- Deskripsi --}}
-        <div class="mb-3">
-            <label for="description" class="form-label">Deskripsi</label>
-            <textarea name="description" id="description" class="form-control" rows="3">{{ old('description', $book->description) }}</textarea>
-            @error('description') <div class="text-danger small">{{ $message }}</div> @enderror
-        </div>
-
-        {{-- Gambar Buku --}}
-        <div class="mb-3">
-            <label for="image" class="form-label">Gambar Buku</label>
-            <input type="file" name="image" id="image" class="form-control">
-            @error('image') <div class="text-danger small">{{ $message }}</div> @enderror
-
-            @if ($book->image)
-                <div class="mt-2">
-                    <img src="{{ Storage::url($book->image) }}" alt="Gambar Buku" width="120">
+                <!-- Kode Buku -->
+                <div>
+                    <label for="code" class="block text-sm font-medium text-[#2c2c2c] mb-1">Kode Buku</label>
+                    <input type="text" id="code" name="code" value="{{ old('code', $book->code) }}"
+                        class="w-full h-10 border border-[#e2e2e2] rounded px-3 focus:outline-none focus:ring-2 focus:ring-[#2d4fb1]"
+                        placeholder="Masukkan kode buku" required>
+                    @error('code')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
-            @endif
-        </div>
 
-        <button type="submit" class="btn btn-primary">Update</button>
-        <a href="{{ route('books.index') }}" class="btn btn-secondary">Batal</a>
-    </form>
-</div>
+                <!-- Judul Buku -->
+                <div>
+                    <label for="title" class="block text-sm font-medium text-[#2c2c2c] mb-1">Judul Buku</label>
+                    <input type="text" id="title" name="title" value="{{ old('title', $book->title) }}"
+                        class="w-full h-10 border border-[#e2e2e2] rounded px-3 focus:outline-none focus:ring-2 focus:ring-[#2d4fb1]"
+                        placeholder="Masukkan judul buku" required>
+                    @error('title')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- Stok Buku -->
+                <div>
+                    <label for="stock" class="block text-sm font-medium text-[#2c2c2c] mb-1">Stok Buku</label>
+                    <input type="number" id="stock" name="stock" value="{{ old('stock', $book->stock) }}"
+                        class="w-full h-10 border border-[#e2e2e2] rounded px-3 focus:outline-none focus:ring-2 focus:ring-[#2d4fb1]"
+                        placeholder="Masukkan jumlah stok" required>
+                    @error('stock')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- Gambar Buku -->
+                <div>
+                    <label for="image" class="block text-sm font-medium text-[#2c2c2c] mb-1">Gambar Buku</label>
+                    <input type="file" id="image" name="image"
+                        class="w-full file:px-4 file:py-2 file:border-0 file:text-sm file:bg-gray-200 file:text-[#2c2c2c] file:rounded
+                    border border-[#e2e2e2] rounded focus:outline-none focus:ring-2 focus:ring-[#2d4fb1] bg-white text-[#2c2c2c]" />
+                    @if ($book->image)
+                        <img src="{{ asset('storage/' . $book->image) }}" alt="Gambar Buku" class="mt-2 max-h-40">
+                    @endif
+                    @error('image')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- Deskripsi Buku (full width) -->
+                <div class="md:col-span-2">
+                    <label for="description" class="block text-sm font-medium text-[#2c2c2c] mb-1">Deskripsi Buku</label>
+                    <textarea id="description" name="description" rows="4"
+                        class="w-full border border-[#e2e2e2] rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#2d4fb1]"
+                        placeholder="Masukkan deskripsi buku">{{ old('description', $book->description) }}</textarea>
+                    @error('description')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- Tombol -->
+                <div class="md:col-span-2 pt-4 flex gap-4">
+                    <a href="{{ route('books.index') }}"
+                        class="px-6 py-2 rounded border border-[#e2e2e2] text-[#2c2c2c] hover:bg-[#f1f1f1] transition">
+                        Batal
+                    </a>
+                    <button type="submit" class="bg-[#2d4fb1] text-white px-6 py-2 rounded hover:bg-[#24438a] transition">
+                        Update Buku
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 @endsection

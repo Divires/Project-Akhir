@@ -12,14 +12,26 @@ class DashboardController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Ambil semua buku dari database
-        $books = Book::all();
+        // Tangkap input search dari query string ?search=...
+        $search = $request->input('search');
 
-        // Kirim data ke view dashboard
+        // Query builder untuk buku
+        $query = Book::query();
+
+        // Jika ada keyword search, filter berdasarkan judul buku
+        if ($search) {
+            $query->where('title', 'like', '%' . $search . '%');
+        }
+
+        // Ambil data buku hasil query
+        $books = $query->get();
+
+        // Kirim data buku ke view dashboard
         return view('student.dashboard', compact('books'));
     }
+
 
     /**
      * Show the form for creating a new resource.
