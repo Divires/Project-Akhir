@@ -18,6 +18,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\BorrowController;
+use App\Http\Controllers\Admin\DashboardController;
 
 // Landing Page
 Route::get('/', function () {
@@ -35,10 +36,11 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Admin Dashboard
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
-
+    // Route::get('/dashboard', function () {
+    //     return view('admin.dashboard');
+    // })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/borrow', [BorrowController::class, 'index'])->name('borrow.index');
     
 });
 
@@ -49,55 +51,55 @@ Route::middleware(['auth', 'student'])->prefix('student')->name('student.')->gro
     })->name('dashboard');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// });
 
-Route::get('/buku', function () {
-    return view('buku');
-});
+// Route::get('/buku', function () {
+//     return view('buku');
+// });
 
-Route::get('/createbuku', function () {
-    return view('createbuku');
-});
+// Route::get('/createbuku', function () {
+//     return view('createbuku');
+// });
 
-Route::get('/readbuku', function () {
-    return view('readbuku');
-});
+// Route::get('/readbuku', function () {
+//     return view('readbuku');
+// });
 
-Route::get('/editbuku', function () {
-    return view('editbuku');
-});
+// Route::get('/editbuku', function () {
+//     return view('editbuku');
+// });
 
-Route::get('/siswa', function () {
-    return view('siswa');
-});
+// Route::get('/siswa', function () {
+//     return view('siswa');
+// });
 
-Route::get('/createsiswa', function () {
-    return view('createsiswa');
-});
+// Route::get('/createsiswa', function () {
+//     return view('createsiswa');
+// });
 
-Route::get('/editsiswa', function () {
-    return view('editsiswa');
-});
+// Route::get('/editsiswa', function () {
+//     return view('editsiswa');
+// });
 
-Route::get('/readsiswa', function () {
-    return view('readsiswa');
-});
+// Route::get('/readsiswa', function () {
+//     return view('readsiswa');
+// });
 
-Route::get('/login', function () {
-    return view('login');
-});
-Route::get('/register', function () {
-    return view('register');
-});
-
-
+// Route::get('/login', function () {
+//     return view('login');
+// });
+// Route::get('/register', function () {
+//     return view('register');
+// });
 
 
-Route::get('/resources/views/buku', function () {
-    return view('buku');
-});
+
+
+// Route::get('/resources/views/buku', function () {
+//     return view('buku');
+// });
 
 
 Route::resource('books', BookController::class);
