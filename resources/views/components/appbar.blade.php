@@ -15,7 +15,7 @@
             <!-- Page Title -->
             <div class="flex flex-col">
                 <h1 class="text-base sm:text-lg md:text-2xl font-semibold text-gray-800">Dashboard</h1>
-                <p class="text-xs sm:text-sm text-gray-500">Hai, {{ Auth::user()->name }}</p>
+                <p class="text-xs sm:text-sm text-gray-500">Hai Riana</p>
             </div>
         </div>
 
@@ -33,16 +33,7 @@
             <div class="h-6 w-px bg-[#2c2c2c]"></div>
 
             <!-- Profile Button -->
-            <a href="{{ route('admin.profile.index') }}" aria-label="Profile" 
-               class="rounded-full bg-gray-300 w-[30px] h-[30px] flex items-center justify-center overflow-hidden">
-               @if(Auth::user()->photo)
-                  <img src="{{ asset('storage/' . Auth::user()->photo) }}" alt="Foto Profil" class="w-full h-full object-cover rounded-full" />
-               @else
-                  <span class="text-sm font-semibold text-gray-700">
-                     {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
-                  </span>
-               @endif
-            </a>
+            <button aria-label="Profile" class="rounded-full bg-gray-300 w-[30px] h-[30px]"></button>
         </div>
     </div>
 </header>
