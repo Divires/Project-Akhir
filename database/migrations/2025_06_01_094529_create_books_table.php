@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('code')->unique();  
             $table->string('title');           
+            $table->text('description')->nullable();  
+            $table->string('image')->nullable();        
             $table->integer('stock')->default(0);
             $table->timestamps();
-        });
+    });
     }
 
     /**

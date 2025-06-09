@@ -20,7 +20,7 @@
                     type="text"
                     name="search"
                     class="form-control"
-                    placeholder="Cari buku..."
+                    placeholder="Cari judul, kode, atau deskripsi..."
                     value="{{ request('search') }}"
                 >
                 <button class="btn btn-outline-secondary" type="submit">Cari</button>
@@ -31,8 +31,10 @@
             <table class="table table-striped table-bordered align-middle">
                 <thead class="table-dark text-center">
                     <tr>
+                        <th>Gambar</th>
                         <th>Kode</th>
                         <th>Judul</th>
+                        <th>Deskripsi</th>
                         <th>Stok</th>
                         <th style="width: 180px;">Aksi</th>
                     </tr>
@@ -40,28 +42,34 @@
                 <tbody>
                     @forelse ($books as $book)
                         <tr>
+                            <td class="text-center" style="width: 80px;">
+                                @if ($book->image)
+                                    <img src="{{ asset('storage/' . $book->image) }}" alt="{{ $book->title }}" width="60">
+                                @else
+                                    <span class="text-muted">-</span>
+                                @endif
+                            </td>
                             <td>{{ $book->code }}</td>
                             <td>{{ $book->title }}</td>
-                            <td>{{ $book->stock }}</td>
+                            <td>{{ Str::limit($book->description, 60) }}</td>
+                            <td class="text-center">{{ $book->stock }}</td>
                             <td class="text-center">
                                 <a href="{{ route('books.show', $book->id) }}" class="btn btn-info btn-sm">Detail</a>
                                 <a href="{{ route('books.edit', $book->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline-block;">
+                                <form action="{{ route('books.destroy', $book->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin hapus buku ini?')">
                                     @csrf @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus buku ini?')">Hapus</button>
+                                    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
                                 </form>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="text-center text-muted">Tidak ada buku ditemukan.</td>
+                            <td colspan="6" class="text-center text-muted">Tidak ada buku ditemukan.</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
-
-     
     </div>
 </div>
 @endsection

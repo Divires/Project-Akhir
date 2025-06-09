@@ -16,7 +16,7 @@
         </div>
     @endif
 
-    <form action="{{ route('books.store') }}" method="POST">
+    <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">
@@ -33,9 +33,25 @@
         </div>
 
         <div class="mb-3">
+            <label for="description" class="form-label">Deskripsi</label>
+            <textarea name="description" id="description" class="form-control" rows="4">{{ old('description') }}</textarea>
+            @error('description')
+                <div class="text-danger small">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="mb-3">
             <label for="stock" class="form-label">Stok</label>
             <input type="number" name="stock" id="stock" class="form-control" value="{{ old('stock', 0) }}">
             @error('stock')
+                <div class="text-danger small">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Gambar Buku (opsional)</label>
+            <input type="file" name="image" id="image" class="form-control">
+            @error('image')
                 <div class="text-danger small">{{ $message }}</div>
             @enderror
         </div>
