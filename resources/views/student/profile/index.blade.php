@@ -1,0 +1,67 @@
+@extends('layouts.appstudent')
+
+@section('title', 'READIFY')
+@section('subtitle', 'Profil')
+
+@section('content')
+<div>
+    <!-- Breadcrumb -->
+    <div class="text-xl mb-4 flex gap-2 items-center font-medium">
+        <span class="text-[#2c2c2c]">Profil</span>
+    </div>
+
+    <!-- Profil Container -->
+    <div class="overflow-x-auto border border-[#e2e2e2] rounded-lg p-6 bg-white text-sm shadow w-full">
+        <div class="grid md:grid-cols-3 gap-6">
+
+            <!-- Foto Profil di kiri -->
+            <div class="flex flex-col items-center gap-3 col-span-1">
+                <img src="{{ $student->photo ? asset('storage/' . $student->photo) : asset('/default-profile.png') }}"
+                     alt="Foto Profil"
+                     class="w-24 h-24 object-cover rounded-full border border-gray-300">
+            </div>
+
+            <!-- Informasi Profil -->
+            <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Nama -->
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-[#2c2c2c] mb-1">Nama</label>
+                    <p class="w-full h-10 px-3 flex items-center border border-[#e2e2e2] rounded bg-[#f9f9f9]">
+                        {{ $student->name }}
+                    </p>
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label class="block text-sm font-medium text-[#2c2c2c] mb-1">Email</label>
+                    <p class="w-full h-10 px-3 flex items-center border border-[#e2e2e2] rounded bg-[#f9f9f9]">
+                        {{ $student->email }}
+                    </p>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-[#2c2c2c] mb-1">NIS</label>
+                    <p class="w-full h-10 px-3 flex items-center border border-[#e2e2e2] rounded bg-[#f9f9f9]">
+                        {{ $student->nis ?? '-' }}
+                    </p>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-[#2c2c2c] mb-1">Kelas</label>
+                    <p class="w-full h-10 px-3 flex items-center border border-[#e2e2e2] rounded bg-[#f9f9f9]">
+                        {{ $student->class ?? '-' }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tombol -->
+            <div class="md:col-span-3 pt-4 flex">
+                <a href="{{ route('student.profile.edit') }}"
+                   class="bg-[#2d4fb1] text-white px-6 py-2 rounded hover:bg-[#24438a] transition">
+                    Edit Profil
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

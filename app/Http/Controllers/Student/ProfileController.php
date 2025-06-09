@@ -12,6 +12,9 @@ class ProfileController extends Controller
     public function index()
     {
         $student = Auth::user();
+        if ($student->role !== 'student') {
+            abort(403, 'Unauthorized');
+        }
         return view('student.profile.index', compact('student'));
     }
 

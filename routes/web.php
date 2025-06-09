@@ -54,6 +54,9 @@ Route::middleware(['auth', 'student'])->prefix('student')->name('student.')->gro
     Route::get('/dashboard', [StudentDashboardController::class, 'index'])
     ->name('dashboard');
     Route::get('/borrow', [StudentBorrowController::class, 'index'])->name('borrow');
+    Route::get('/profile', [StudentProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/edit', [StudentProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [StudentProfileController::class, 'update'])->name('profile.update');
 
 });
 
@@ -155,7 +158,3 @@ Route::middleware(['auth', 'student'])->prefix('student')->name('student.')->gro
 Route::resource('books', BookController::class);
 Route::resource('students', StudentController::class);
 
-
-Route::get('/profile', [StudentProfileController::class, 'index'])->name('profile.index');
-Route::get('/profile/edit', [StudentProfileController::class, 'edit'])->name('profile.edit');
-Route::put('/profile', [StudentProfileController::class, 'update'])->name('profile.update');
