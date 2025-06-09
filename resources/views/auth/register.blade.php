@@ -95,7 +95,7 @@
 
     <form method="POST" action="{{ route('register') }}" class="w-full flex flex-col gap-5">
       @csrf
-      <h2 class="text-[#2c2c2c] text-xl font-semibold mb-4 text-center">Register</h2>
+      <h2 class="text-[#2c2c2c] text-xl font-semibold mb-4 text-center">Daftar</h2>
 
       <!-- Alert jika error -->
       @if ($errors->any())
