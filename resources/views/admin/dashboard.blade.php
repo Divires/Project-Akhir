@@ -14,7 +14,7 @@
                         <p class="text-xs sm:text-sm text-[#2c2c2c]/70">Total Member</p>
                         <p class="text-xl sm:text-2xl font-bold">{{ $totalSiswa }}</p>
                     </div>
-                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 text-purple-500 rounded-lg flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="purple"
                             viewBox="0 0 24 24">
                             <path fill="currentColor"
@@ -66,7 +66,7 @@
                         <p class="text-xs sm:text-sm text-[#2c2c2c]/70">Pengembalian</p>
                         <p class="text-xl sm:text-2xl font-bold">{{ $belumDikembalikan }}</p>
                     </div>
-                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-sky-100 rounded-lg flex items-center justify-center">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 text-green-500 rounded-lg flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="skyblue"
                             viewBox="0 0 1024 1024">
                             <path fill="currentColor"

@@ -12,7 +12,7 @@
         </div>
 
         <div class="overflow-x-auto border border-[#e2e2e2] rounded-lg p-6 bg-white text-sm shadow w-full">
-            <form action="{{ route('books.update', $book->id) }}" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <form action="{{ route('admin.books.update', $book->id) }}" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 @csrf
                 @method('PUT')
 
