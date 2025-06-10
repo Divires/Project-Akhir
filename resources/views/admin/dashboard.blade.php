@@ -8,7 +8,6 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
 
-            <!-- Total Member -->
             <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-[#2c2c2c]">
                 <div class="flex items-center justify-between">
                     <div>
@@ -25,7 +24,6 @@
                 </div>
             </div>
 
-            <!-- Buku Tersedia -->
             <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-[#2c2c2c] text-pink-500">
                 <div class="flex items-center justify-between">
                     <div>
@@ -43,7 +41,6 @@
                 </div>
             </div>
 
-            <!-- Peminjaman -->
             <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-[#2c2c2c]">
                 <div class="flex items-center justify-between">
                     <div>
@@ -63,7 +60,6 @@
                 </div>
             </div>
 
-            <!-- Pengembalian -->
             <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-[#2c2c2c]">
                 <div class="flex items-center justify-between">
                     <div>

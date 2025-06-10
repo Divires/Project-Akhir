@@ -5,19 +5,16 @@
 
 @section('content')
     <div>
-        <!-- Breadcrumb -->
         <div class="text-xl mb-4 flex gap-2 items-center font-medium">
             <a href="{{ route('admin.borrow.index') }}" class="text-[#2c2c2c] hover:text-[#2d4fb1]">Peminjaman</a>
             <span class="text-[#7c7c7c]">></span>
             <span class="text-[#2d4fb1]">Pinjam Baru</span>
         </div>
 
-        <!-- Form -->
         <div class="overflow-x-auto border border-[#e2e2e2] rounded-lg p-6 bg-white text-sm shadow w-full">
             <form action="{{ route('admin.borrow.store') }}" method="POST" class="grid grid-cols-1 gap-6">
                 @csrf
 
-                <!-- NIS -->
                 <div>
                     <label for="nis" class="block text-sm font-medium text-[#2c2c2c] mb-1">NIS</label>
                     <input type="text" id="nis" name="nis"
@@ -28,7 +25,6 @@
                     @enderror
                 </div>
 
-                <!-- Kode Buku -->
                 <div>
                     <label for="book_code" class="block text-sm font-medium text-[#2c2c2c] mb-1">Kode Buku</label>
                     <input type="text" id="book_code" name="book_code"
@@ -39,7 +35,6 @@
                     @enderror
                 </div>
 
-                <!-- Tanggal Pinjam -->
                 <div>
                     <label for="borrow_date" class="block text-sm font-medium text-[#2c2c2c] mb-1">Tanggal Pinjam</label>
                     <input type="date" id="borrow_date" name="borrow_date"
@@ -50,7 +45,6 @@
                     @enderror
                 </div>
 
-                <!-- Tombol -->
                 <div class="pt-4 flex gap-4">
                     <a href="{{ route('admin.borrow.index') }}"
                         class="px-6 py-2 rounded border border-[#e2e2e2] text-[#2c2c2c] hover:bg-[#f1f1f1] transition">

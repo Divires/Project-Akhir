@@ -29,4 +29,9 @@ class Student extends Authenticatable
     {
         return $this->hasMany(Borrow::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

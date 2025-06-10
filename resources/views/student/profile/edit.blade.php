@@ -55,14 +55,14 @@
                 <!-- Jabatan -->
                 <div>
                     <label for="position" class="block text-sm font-medium text-[#2c2c2c] mb-1">NIS</label>
-                    <input type="text" id="position" name="position" value="{{ old('position', $student->nis) }}"
+                   <input type="text" id="nis" name="nis" value="{{ old('nis', $student->nis) }}"
                         class="w-full h-10 border border-[#e2e2e2] rounded px-3 focus:outline-none focus:ring-2 focus:ring-[#2d4fb1]"
                         placeholder="Masukkan jabatan">
                 </div>
 
                 <div>
                     <label for="position" class="block text-sm font-medium text-[#2c2c2c] mb-1">Kelas</label>
-                    <input type="text" id="position" name="position" value="{{ old('position', $student->class) }}"
+                    <input type="text" id="class" name="class" value="{{ old('class', $student->class) }}"
                         class="w-full h-10 border border-[#e2e2e2] rounded px-3 focus:outline-none focus:ring-2 focus:ring-[#2d4fb1]"
                         placeholder="Masukkan jabatan">
                 </div>

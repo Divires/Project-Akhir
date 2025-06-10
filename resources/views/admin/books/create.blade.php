@@ -5,27 +5,24 @@
 
 @section('content')
     <div>
-        <!-- Breadcrumb -->
         <div class="text-xl mb-4 flex gap-2 items-center font-medium">
             <a href="/buku" class="text-[#2c2c2c] hover:text-[#2d4fb1]">Buku</a>
             <span class="text-[#7c7c7c]">></span>
             <span class="text-[#2d4fb1]">Tambah Buku</span>
         </div>
 
-        <!-- Form -->
         <div class="overflow-x-auto border border-[#e2e2e2] rounded-lg p-6 bg-white text-sm shadow w-full">
             <form method="POST" action="{{ route('books.store') }}" enctype="multipart/form-data"
                   class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 @csrf
 
-                <!-- Kode Buku -->
                 <div>
                     <label for="kode" class="block text-sm font-medium text-[#2c2c2c] mb-1">Kode Buku</label>
                     <input type="text" id="kode" name="kode" value="{{ $newCode }}" readonly
                         class="w-full h-10 border border-[#e2e2e2] rounded px-3 bg-gray-100 text-gray-600 cursor-not-allowed" />
                 </div>
 
-                <!-- Judul Buku -->
+                
                 <div>
                     <label for="title" class="block text-sm font-medium text-[#2c2c2c] mb-1">Judul Buku</label>
                     <input type="text" id="title" name="title" value="{{ old('title') }}"
@@ -33,7 +30,7 @@
                         placeholder="Masukkan judul buku" required>
                 </div>
 
-                <!-- Stok Buku -->
+              
                 <div>
                     <label for="stock" class="block text-sm font-medium text-[#2c2c2c] mb-1">Stok Buku</label>
                     <input type="number" id="stock" name="stock" value="{{ old('stock') }}"
@@ -41,7 +38,7 @@
                         placeholder="Masukkan jumlah stok" required>
                 </div>
 
-                <!-- Gambar Buku -->
+                
                 <div>
                     <label for="image" class="block text-sm font-medium text-[#2c2c2c] mb-1">Gambar Buku</label>
                     <input type="file" id="image" name="image"
@@ -49,7 +46,6 @@
                     border border-[#e2e2e2] rounded focus:outline-none focus:ring-2 focus:ring-[#2d4fb1] bg-white text-[#2c2c2c]" />
                 </div>
 
-                <!-- Deskripsi Buku -->
                 <div class="md:col-span-2">
                     <label for="description" class="block text-sm font-medium text-[#2c2c2c] mb-1">Deskripsi Buku</label>
                     <textarea id="description" name="description" rows="4"
@@ -57,7 +53,6 @@
                         placeholder="Masukkan deskripsi buku">{{ old('description') }}</textarea>
                 </div>
 
-                <!-- Tombol -->
                 <div class="md:col-span-2 pt-4 flex gap-4">
                     <a href="{{ route('books.index') }}"
                         class="px-6 py-2 rounded border border-[#e2e2e2] text-[#2c2c2c] hover:bg-[#f1f1f1] transition">

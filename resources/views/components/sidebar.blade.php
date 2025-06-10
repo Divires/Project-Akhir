@@ -23,12 +23,10 @@
         </button>
     </div>
 
-    {{-- Logo (sembunyi di mobile) --}}
     <div class="mt-[70px] mb-12 text-[#2d4fb1] font-bold text-[28px] font-cinzel flex justify-center w-full">
         READIFY
     </div>
 
-    {{-- Menu Atas --}}
     <div class="flex flex-col gap-[15px] w-full px-6">
         @php
             $menusTop = [
@@ -103,7 +101,6 @@
         @endforeach
     </div>
 
-    {{-- Menu Bawah --}}
     <div class="flex flex-col mt-68 w-full px-6">
         <form action="{{ route('logout') }}" method="POST" class="w-full">
     @csrf
@@ -121,7 +118,6 @@
 
     </div>
 <style>
-    /* Optional: font Cinzel jika mau sama seperti logo sebelumnya */
     @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
     .font-cinzel {
         font-family: 'Cinzel', serif;

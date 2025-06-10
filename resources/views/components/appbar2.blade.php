@@ -12,16 +12,14 @@
                 </svg>
             </button>
 
-            <!-- Page Title -->
             <div class="flex flex-col">
                 <h1 class="text-base sm:text-lg md:text-2xl font-semibold text-gray-800">Dashboard</h1>
                 <p class="text-xs sm:text-sm text-gray-500">Hai, {{ Auth::user()->name }}</p>
             </div>
         </div>
 
-        <!-- Right Side -->
         <div class="flex items-center gap-3">
-            <!-- Notification Button -->
+
             <button aria-label="Notifikasi" class="text-[#2c2c2c] w-[30px] h-[30px] flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 36 36" fill="currentColor">
                     <path d="M32.51 27.83A14.4 14.4 0 0 1 30 24.9a12.6 12.6 0 0 1-1.35-4.81v-4.94A10.81 10.81 0 0 0 19.21 4.4V3.11a1.33 1.33 0 1 0-2.67 0v1.31a10.81 10.81 0 0 0-9.33 10.73v4.94a12.6 12.6 0 0 1-1.35 4.81a14.4 14.4 0 0 1-2.47 2.93a1 1 0 0 0-.34.75v1.36a1 1 0 0 0 1 1h27.8a1 1 0 0 0 1-1v-1.36a1 1 0 0 0-.34-.75Z" />
@@ -29,10 +27,8 @@
                 </svg>
             </button>
 
-            <!-- Divider -->
             <div class="h-6 w-px bg-[#2c2c2c]"></div>
 
-            <!-- Profile Button -->
             <a href="{{ route('student.profile.index') }}" aria-label="Profile" 
                class="rounded-full bg-gray-300 w-[30px] h-[30px] flex items-center justify-center overflow-hidden">
                @if(Auth::user()->photo)

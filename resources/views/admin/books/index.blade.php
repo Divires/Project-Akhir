@@ -32,7 +32,7 @@
                     </thead>
                     <tbody>
                         @forelse ($books as $book)
-                            <tr class="h-20 border-t">
+                            <tr class="h-20">
                                 <td class="px-4 font-medium text-[#9b9a9a] whitespace-nowrap">{{ $book->code }}</td>
                                 <td class=" px-4 py-2 text-center">
                                     @if($book->image)

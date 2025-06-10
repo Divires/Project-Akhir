@@ -5,20 +5,17 @@
 
 @section('content')
     <div>
-        <!-- Breadcrumb -->
         <div class="text-xl mb-4 flex gap-2 items-center font-medium">
             <a href="{{ route('books.index') }}" class="text-[#2c2c2c] hover:text-[#2d4fb1]">Buku</a>
             <span class="text-[#7c7c7c]">></span>
             <span class="text-[#2d4fb1]">Edit Buku</span>
         </div>
 
-        <!-- Form -->
         <div class="overflow-x-auto border border-[#e2e2e2] rounded-lg p-6 bg-white text-sm shadow w-full">
             <form action="{{ route('books.update', $book->id) }}" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 @csrf
                 @method('PUT')
 
-                <!-- Kode Buku -->
                 <div>
                     <label for="code" class="block text-sm font-medium text-[#2c2c2c] mb-1">Kode Buku</label>
                     <input type="text" id="code" name="code" value="{{ old('code', $book->code) }}"
@@ -29,7 +26,6 @@
                     @enderror
                 </div>
 
-                <!-- Judul Buku -->
                 <div>
                     <label for="title" class="block text-sm font-medium text-[#2c2c2c] mb-1">Judul Buku</label>
                     <input type="text" id="title" name="title" value="{{ old('title', $book->title) }}"
@@ -40,7 +36,6 @@
                     @enderror
                 </div>
 
-                <!-- Stok Buku -->
                 <div>
                     <label for="stock" class="block text-sm font-medium text-[#2c2c2c] mb-1">Stok Buku</label>
                     <input type="number" id="stock" name="stock" value="{{ old('stock', $book->stock) }}"
@@ -51,7 +46,6 @@
                     @enderror
                 </div>
 
-                <!-- Gambar Buku -->
                 <div>
                     <label for="image" class="block text-sm font-medium text-[#2c2c2c] mb-1">Gambar Buku</label>
                     <input type="file" id="image" name="image"
@@ -65,7 +59,6 @@
                     @enderror
                 </div>
 
-                <!-- Deskripsi Buku (full width) -->
                 <div class="md:col-span-2">
                     <label for="description" class="block text-sm font-medium text-[#2c2c2c] mb-1">Deskripsi Buku</label>
                     <textarea id="description" name="description" rows="4"
@@ -76,7 +69,6 @@
                     @enderror
                 </div>
 
-                <!-- Tombol -->
                 <div class="md:col-span-2 pt-4 flex gap-4">
                     <a href="{{ route('books.index') }}"
                         class="px-6 py-2 rounded border border-[#e2e2e2] text-[#2c2c2c] hover:bg-[#f1f1f1] transition">
