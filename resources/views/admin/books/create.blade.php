@@ -6,7 +6,7 @@
 @section('content')
     <div>
         <div class="text-xl mb-4 flex gap-2 items-center font-medium">
-            <a href="/buku" class="text-[#2c2c2c] hover:text-[#2d4fb1]">Buku</a>
+            <a href="{{ route('admin.books.index') }}" class="text-[#2c2c2c] hover:text-[#2d4fb1]">Buku</a>
             <span class="text-[#7c7c7c]">></span>
             <span class="text-[#2d4fb1]">Tambah Buku</span>
         </div>
