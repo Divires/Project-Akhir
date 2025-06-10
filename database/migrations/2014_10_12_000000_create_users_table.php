@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('password');
             $table->enum('role', ['admin', 'student']);
-            $table->string('nis')->nullable();     // khusus student
-            $table->string('class')->nullable();   // khusus student
-            $table->string('position')->nullable(); // khusus admin
+            $table->string('nis')->nullable();    
+            $table->string('class')->nullable();  
+            $table->string('position')->nullable(); 
             $table->string('photo')->nullable();
             $table->rememberToken();
             $table->timestamps();

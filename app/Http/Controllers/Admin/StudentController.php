@@ -51,7 +51,6 @@ class StudentController extends Controller
             'nis' => 'required|string|unique:student,nis|unique:users,nis',
         ]);
 
-        // Simpan ke tabel student
         $student = Student::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -60,11 +59,10 @@ class StudentController extends Controller
             'nis' => $request->nis,
         ]);
 
-        // Simpan ke tabel users dengan role 'student'
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password), // atau langsung $request->password jika pakai mutator
+            'password' => Hash::make($request->password), 
             'role' => 'student',
             'nis' => $request->nis,
             'class' => $request->class,
@@ -118,10 +116,8 @@ class StudentController extends Controller
             $data['password'] = Hash::make($request->password);
         }
 
-        // Update tabel student
         $student->update($data);
 
-        // Update tabel user
         $user = User::where('email', $student->email)->first();
         if ($user) {
             $user->update($data);
@@ -137,10 +133,8 @@ class StudentController extends Controller
     {
         $student = Student::findOrFail($id);
 
-        // Hapus data user berdasarkan email
         User::where('email', $student->email)->delete();
 
-        // Hapus student
         $student->delete();
 
         return redirect()->route('admin.students.index')->with('success', 'Student deleted successfully.');

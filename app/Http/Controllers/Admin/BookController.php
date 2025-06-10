@@ -15,8 +15,6 @@ class BookController extends Controller
     public function index(Request $request)
 {
     $query = Book::query();
-
-    // Cek apakah ada keyword pencarian
     if ($request->has('search')) {
         $search = $request->search;
         $query ->where('title', 'like', "%$search%")
@@ -34,14 +32,9 @@ class BookController extends Controller
      */
   public function create()
 {
-    // Ambil kode terakhir
     $lastBook = Book::orderBy('id', 'desc')->first();
     $lastCode = $lastBook ? intval(substr($lastBook->code, 2)) : 0;
-
-    // Buat kode baru dengan format BK001, BK002, dst.
     $newCode = 'BK' . str_pad($lastCode + 1, 3, '0', STR_PAD_LEFT);
-
-    // Kirim kode ke view
     return view('admin.books.create', compact('newCode'));
 }
 
@@ -120,7 +113,6 @@ class BookController extends Controller
         ];
 
         if ($request->hasFile('image')) {
-            // Hapus gambar lama jika ada
             if ($book->image && Storage::disk('public')->exists($book->image)) {
                 Storage::disk('public')->delete($book->image);
             }
@@ -141,7 +133,6 @@ class BookController extends Controller
     {
         $book = Book::findOrFail($id);
 
-        // Hapus gambar jika ada
         if ($book->image && Storage::disk('public')->exists($book->image)) {
             Storage::disk('public')->delete($book->image);
         }

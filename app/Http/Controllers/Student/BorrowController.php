@@ -13,8 +13,6 @@ class BorrowController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-
-        // Pastikan hanya student yang bisa akses
         if ($user->role !== 'student') {
             abort(403, 'Hanya siswa yang dapat mengakses halaman ini.');
         }

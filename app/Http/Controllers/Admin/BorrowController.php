@@ -59,10 +59,7 @@ class BorrowController extends Controller
         return back()->with('error', 'Stok buku habis.');
     }
 
-    // Kurangi stok
     $book->decrement('stock');
-
-    // Buat peminjaman
     Borrow::create([
         'student_id' => $student->id,
         'book_id' => $book->id,
@@ -90,15 +87,11 @@ class BorrowController extends Controller
         $expected = Carbon::parse($borrow->expected_return_date);
         $actual = Carbon::parse($request->actual_return_date);
 
-        // Hitung denda hanya jika actual lebih besar dari expected
         $fine = $actual->greaterThan($expected)
             ? $actual->diffInDays($expected) * 1000
             : 0;
 
-        // Kembalikan stok buku
         $borrow->book->increment('stock');
-
-        // Update data peminjaman
         $borrow->update([
             'actual_return_date' => $actual,
             'denda' => $fine,

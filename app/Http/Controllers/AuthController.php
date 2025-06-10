@@ -30,7 +30,6 @@ public function register(Request $request)
 
     $hashedPassword = Hash::make($request->password);
 
-    // Simpan ke tabel users
     $user = User::create([
         'name' => $request->name,
         'email' => $request->email,
@@ -42,7 +41,6 @@ public function register(Request $request)
         'remember_token' => Str::random(60),
     ]);
 
-    // Jika role student dan kamu memang butuh data di tabel students
     if ($request->role === 'student') {
         Student::create([
             'name' => $request->name,
@@ -50,17 +48,17 @@ public function register(Request $request)
             'nis' => $request->nis,
             'class' => $request->class,
             'password' => $hashedPassword,
-            'user_id' => $user->id, // lebih baik relasi
+            'user_id' => $user->id, 
         ]);
     }
 
     return redirect()->route('login.form')->with('success', 'Registrasi berhasil! Silakan login.');
 }
 
-    public function showLoginForm()
-    {
-        return view('auth.login');
-    }
+public function showLoginForm()
+{
+    return view('auth.login');
+}
 
 public function login(Request $request)
 {
@@ -69,14 +67,13 @@ public function login(Request $request)
     if (Auth::attempt($credentials)) {
         $user = Auth::user();
 
-        // Paksa agar tidak redirect ke 'intended'
         if ($user->role === 'admin') {
             return redirect()->route('admin.dashboard.index');
         } elseif ($user->role === 'student') {
             return redirect()->route('student.dashboard');
         }
 
-        Auth::logout(); // fallback kalau role tidak dikenali
+        Auth::logout(); 
         return redirect()->route('login')->withErrors(['email' => 'Role tidak dikenali.']);
     }
 

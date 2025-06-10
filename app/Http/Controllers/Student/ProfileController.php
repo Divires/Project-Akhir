@@ -26,6 +26,7 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
+        /** @var \App\Models\User $student */
         $student = Auth::user();
 
         $request->validate([
@@ -53,6 +54,7 @@ class ProfileController extends Controller
 
     public function updatePassword(Request $request)
     {
+        /** @var \App\Models\User $student */
         $student = Auth::user();
 
         $request->validate([

@@ -11,7 +11,6 @@ class StudentController extends Controller
 {
     public function borrow()
     {
-         // Ambil data siswa login (anggap menggunakan Auth::user()->id sebagai student_id)
         $studentId = Auth::user()->id;
 
         $borrow = Borrow::with('book')
